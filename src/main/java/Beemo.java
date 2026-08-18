@@ -15,6 +15,8 @@ public class Beemo {
         System.out.println("What can I do for you?");
         System.out.println(divider);
 
+        String[] tasks = new String[100];
+        int taskCount = 0;
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
@@ -26,7 +28,15 @@ public class Beemo {
                 break;
             }
 
-            System.out.println(command);
+            if (command.equals("list")) {
+                for (int i = 0; i < taskCount; i++) {
+                    System.out.println((i + 1) + ". " + tasks[i]);
+                }
+            } else {
+                tasks[taskCount] = command;
+                taskCount++;
+                System.out.println("added: " + command);
+            }
             System.out.println(divider);
         }
     }
