@@ -32,6 +32,14 @@ The chatbot is named Beemo. Use `Beemo` consistently in class names, source file
 
 Ensure that Java 25 is used when running the application or build tasks. On macOS, use `sdk use java 25.0.3.fx-zulu` to switch to Java 25 if needed.
 
+## Required UI testing after code updates
+
+After every source-code update:
+
+1. Review `test/ui-test-plan.md` and update it when the changed behavior is not covered or when expected console output has changed.
+2. Invoke the project-specific `test-ui` skill, even when the test plan does not need an update.
+3. Do not report the code update as complete unless the invoked test session passes. If a test fails, follow the skill's fail-fast reporting requirements and do not claim that later test cases passed.
+
 ## Git
 
 Use lightweight tags unless the user requests an annotated tag.
