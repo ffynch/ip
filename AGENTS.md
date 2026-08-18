@@ -9,8 +9,8 @@ Unless the user says otherwise, assume that you are assisting a student working 
 # Student profile
 
 * Prior knowledge: Basic Java and OOP concepts.
-* Level of programming experience: [to be filled]
-* IDE and level of expertise: [to be filled]
+* Level of programming experience: Beginner; comfortable with basic Java and OOP concepts.
+* IDE and level of expertise: IntelliJ IDEA; basic proficiency, with the project already imported and configured.
 
 # Guidance for interacting with users
 
@@ -23,6 +23,10 @@ Unless the user says otherwise, assume that you are assisting a student working 
   * When faced with a design choice, choose the simplest option that is sufficient for the requirements, while briefly explaining relevant more advanced alternatives.
 
 # Project-specific requirements
+
+## Product identity
+
+The chatbot is named Beemo. Use `Beemo` consistently in class names, source file names, banners, greetings, documentation, and other user-facing text. Remove references to the original placeholder name when implementing the rename.
 
 ## Java version:
 
