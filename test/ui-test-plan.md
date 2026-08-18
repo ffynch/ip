@@ -40,6 +40,110 @@ Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
 ____________________________________________________________
 ```
 
+## Test case: Delete tasks without corrupting list state
+
+**Aim:** Verify invalid deletions preserve state while valid deletions renumber tasks and retain their completion status.
+
+### Input
+
+```text
+todo read book
+deadline return book /by Sunday
+event meeting /from Monday /to Tuesday
+mark 1
+delete 0
+delete two
+delete 4
+delete 2
+list
+mark 2
+delete 1
+list
+delete 2
+delete 1
+delete 1
+bye
+```
+
+### Expected output
+
+```text
+____________________________________________________________
+ ____  _____ _____ __  __  ___  
+| __ )| ____| ____|  \/  |/ _ \ 
+|  _ \|  _| |  _| | |\/| | | | |
+| |_) | |___| |___| |  | | |_| |
+|____/|_____|_____|_|  |_|\___/ 
+Hello! I'm Beemo.
+What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [T][ ] read book
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [D][ ] return book (by: Sunday)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [E][ ] meeting (from: Monday to: Tuesday)
+Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Nice! I've marked this task as done:
+  [T][X] read book
+____________________________________________________________
+____________________________________________________________
+OOPS... Task 0 is not in your list. ╥‸╥
+____________________________________________________________
+____________________________________________________________
+OOPS... 'two' is not a valid task number. ╥‸╥
+____________________________________________________________
+____________________________________________________________
+OOPS... Task 4 is not in your list. ╥‸╥
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [D][ ] return book (by: Sunday)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[E][ ] meeting (from: Monday to: Tuesday)
+____________________________________________________________
+____________________________________________________________
+Nice! I've marked this task as done:
+  [E][X] meeting (from: Monday to: Tuesday)
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [T][X] read book
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the tasks in your list:
+1.[E][X] meeting (from: Monday to: Tuesday)
+____________________________________________________________
+____________________________________________________________
+OOPS... Task 2 is not in your list. ╥‸╥
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [E][X] meeting (from: Monday to: Tuesday)
+Now you have 0 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+OOPS... Task 1 is not in your list. ╥‸╥
+____________________________________________________________
+____________________________________________________________
+Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
+____________________________________________________________
+```
+
 ## Test case: Invalid additions preserve task order
 
 **Aim:** Verify that rejected task commands do not add entries or shift the numbering of valid tasks.
