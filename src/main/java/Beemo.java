@@ -4,7 +4,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class deBeemo {
+public class Beemo {
     public static void main(String[] args) {
         String divider = "____________________________________________________________";
         String banner = " ____  _____ _____ __  __  ___  \n"
