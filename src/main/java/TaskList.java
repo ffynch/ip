@@ -37,26 +37,26 @@ public class TaskList {
     }
 
     /**
-     * Deletes and returns the task at the specified index.
+     * Deletes and returns the task with the specified display number.
      */
-    public Task delete(int index) {
-        return tasks.remove(index);
+    public Task delete(int taskNumber) throws BeemoException {
+        return tasks.remove(toIndex(taskNumber));
     }
 
     /**
-     * Marks and returns the task at the specified index as done.
+     * Marks and returns the task with the specified display number as done.
      */
-    public Task markAsDone(int index) {
-        Task task = tasks.get(index);
+    public Task markAsDone(int taskNumber) throws BeemoException {
+        Task task = tasks.get(toIndex(taskNumber));
         task.markAsDone();
         return task;
     }
 
     /**
-     * Marks and returns the task at the specified index as not done.
+     * Marks and returns the task with the specified display number as not done.
      */
-    public Task markAsNotDone(int index) {
-        Task task = tasks.get(index);
+    public Task markAsNotDone(int taskNumber) throws BeemoException {
+        Task task = tasks.get(toIndex(taskNumber));
         task.markAsNotDone();
         return task;
     }
@@ -66,5 +66,13 @@ public class TaskList {
      */
     public List<Task> asList() {
         return Collections.unmodifiableList(tasks);
+    }
+
+    private int toIndex(int taskNumber) throws BeemoException {
+        if (taskNumber < 1 || taskNumber > tasks.size()) {
+            throw new BeemoException(
+                    "OOPS... Task " + taskNumber + " is not in your list. ╥‸╥");
+        }
+        return taskNumber - 1;
     }
 }

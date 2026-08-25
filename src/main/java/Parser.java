@@ -6,17 +6,32 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     /**
-     * Returns the type of command entered by the user.
+     * Converts a line of user input into an executable command.
      */
-    public static CommandType parseCommandType(String command) {
-        return CommandType.from(command);
+    public static Command parse(String command) throws BeemoException {
+        CommandType commandType = CommandType.from(command);
+        switch (commandType) {
+        case BYE:
+            return new ExitCommand();
+        case LIST:
+            return new ListCommand();
+        case MARK:
+            return new MarkCommand(parseTaskNumber(command, commandType.getKeyword()));
+        case UNMARK:
+            return new UnmarkCommand(parseTaskNumber(command, commandType.getKeyword()));
+        case DELETE:
+            return new DeleteCommand(parseTaskNumber(command, commandType.getKeyword()));
+        case TODO:
+        case DEADLINE:
+        case EVENT:
+            return new AddCommand(parseTask(command));
+        case UNKNOWN:
+        default:
+            throw new BeemoException("OOPS... I don't know what that means ╥‸╥");
+        }
     }
 
-    /**
-     * Returns the zero-based task index specified by a command.
-     */
-    public static int parseTaskIndex(String command, String keyword, int taskCount)
-            throws BeemoException {
+    private static int parseTaskNumber(String command, String keyword) throws BeemoException {
         String numberText = command.substring(keyword.length()).trim();
         if (numberText.isEmpty()) {
             throw new BeemoException(
@@ -29,17 +44,10 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new BeemoException("OOPS... '" + numberText + "' is not a valid task number. ╥‸╥");
         }
-
-        if (taskNumber < 1 || taskNumber > taskCount) {
-            throw new BeemoException("OOPS... Task " + taskNumber + " is not in your list. ╥‸╥");
-        }
-        return taskNumber - 1;
+        return taskNumber;
     }
 
-    /**
-     * Creates a task from a todo, deadline, or event command.
-     */
-    public static Task parseTask(String command) throws BeemoException {
+    private static Task parseTask(String command) throws BeemoException {
         if (command.equals("todo") || command.startsWith("todo ")) {
             return parseTodo(command);
         }
