@@ -26,6 +26,6 @@ From the repository root, run:
 python3 .codex/skills/test-ui/scripts/run-ui-tests.py
 ```
 
-The runner compiles every Java source in `src/main/java` with the available JDK, then runs the cases in plan order. It terminates immediately on the first compilation or output failure. On an output failure, it prints the expected output, actual output, and a unified diff.
+The runner compiles every Java source in `src/main/java` with the available JDK, then runs the cases in plan order. Each case uses an isolated temporary working directory so saved application data cannot leak into another case. It terminates immediately on the first compilation or output failure. On an output failure, it prints the expected output, actual output, and a unified diff.
 
 Always show the resulting console input/output record to the user. The runner prints it and saves the same record to `_temp/ui-test-session.log`. Report the absolute log path and summarize passed cases; never claim later cases passed after an earlier failure.

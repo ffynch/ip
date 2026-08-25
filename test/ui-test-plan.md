@@ -1,6 +1,6 @@
 # UI Test Plan
 
-The test runner compiles the Java files in `src/main/java`, starts a fresh `Beemo` process for each case, sends the listed commands through standard input, and compares the complete standard output exactly. Cases run from top to bottom and testing stops at the first failure.
+The test runner compiles the Java files in `src/main/java`, starts a fresh `Beemo` process in an isolated temporary working directory for each case, sends the listed commands through standard input, and compares the complete standard output exactly. Isolation ensures that saved task data from one case cannot affect another case. Cases run from top to bottom and testing stops at the first failure.
 
 ## Test case: Add and list a todo
 
