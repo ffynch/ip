@@ -22,11 +22,16 @@ public class Beemo {
                 CommandType commandType = Parser.parseCommandType(command);
                 switch (commandType) {
                 case BYE:
-                    ui.showGoodbye();
-                    ui.showLine();
-                    return;
+                    Command exitCommand = new ExitCommand();
+                    exitCommand.execute(tasks, ui, storage);
+                    if (exitCommand.isExit()) {
+                        ui.showLine();
+                        return;
+                    }
+                    break;
                 case LIST:
-                    ui.showTaskList(tasks.asList());
+                    Command listCommand = new ListCommand();
+                    listCommand.execute(tasks, ui, storage);
                     break;
                 case MARK:
                     int markIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
