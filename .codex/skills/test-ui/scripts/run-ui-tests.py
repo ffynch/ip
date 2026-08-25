@@ -8,6 +8,7 @@ import difflib
 import re
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -86,6 +87,8 @@ def main() -> int:
     classes_dir = repo / "_temp/ui-test-classes"
     log_path = repo / "_temp/ui-test-session.log"
     log_path.parent.mkdir(parents=True, exist_ok=True)
+    test_runs_dir = repo / "_temp/ui-test-runs"
+    test_runs_dir.mkdir(parents=True, exist_ok=True)
 
     try:
         cases = parse_plan(plan_path)
@@ -96,13 +99,14 @@ def main() -> int:
 
     records: list[str] = []
     for case in cases:
-        result = subprocess.run(
-            ["java", "-cp", str(classes_dir), args.main_class],
-            cwd=repo,
-            input=case.console_input,
-            capture_output=True,
-            text=True,
-        )
+        with tempfile.TemporaryDirectory(dir=test_runs_dir) as working_directory:
+            result = subprocess.run(
+                ["java", "-cp", str(classes_dir), args.main_class],
+                cwd=working_directory,
+                input=case.console_input,
+                capture_output=True,
+                text=True,
+            )
         actual = result.stdout
         passed = result.returncode == 0 and actual == case.expected_output
         record = format_record(case, actual, "PASS" if passed else "FAIL")
