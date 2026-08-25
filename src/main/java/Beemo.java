@@ -45,9 +45,8 @@ public class Beemo {
                     break;
                 case DELETE:
                     int deleteIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
-                    Task removedTask = tasks.delete(deleteIndex);
-                    storage.saveTasks(tasks.asList());
-                    ui.showDeletedTask(removedTask, tasks.size());
+                    Command deleteCommand = new DeleteCommand(deleteIndex);
+                    deleteCommand.execute(tasks, ui, storage);
                     break;
                 case TODO:
                 case DEADLINE:
