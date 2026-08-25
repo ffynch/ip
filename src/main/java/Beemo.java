@@ -2,22 +2,11 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Beemo {
     public static void main(String[] args) {
-        String divider = "____________________________________________________________";
-        String banner = " ____  _____ _____ __  __  ___  \n"
-                + "| __ )| ____| ____|  \\/  |/ _ \\ \n"
-                + "|  _ \\|  _| |  _| | |\\/| | | | |\n"
-                + "| |_) | |___| |___| |  | | |_| |\n"
-                + "|____/|_____|_____|_|  |_|\\___/ \n";
-
-        System.out.println(divider);
-        System.out.print(banner);
-        System.out.println("Hello! I'm Beemo.");
-        System.out.println("What can I do for you?");
-        System.out.println(divider);
+        Ui ui = new Ui();
+        ui.showWelcome();
 
         Storage storage = new Storage(Path.of("data", "beemo.txt"));
         ArrayList<Task> tasks;
@@ -25,48 +14,40 @@ public class Beemo {
             tasks = storage.loadTasks();
         } catch (BeemoException e) {
             tasks = new ArrayList<>();
-            System.out.println(e.getMessage());
-            System.out.println(divider);
+            ui.showError(e.getMessage());
+            ui.showLine();
         }
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
-            System.out.println(divider);
+        while (ui.hasNextCommand()) {
+            String command = ui.readCommand();
+            ui.showLine();
 
             try {
                 CommandType commandType = CommandType.from(command);
                 switch (commandType) {
                 case BYE:
-                    System.out.println("Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა");
-                    System.out.println(divider);
+                    ui.showGoodbye();
+                    ui.showLine();
                     return;
                 case LIST:
-                    System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println((i + 1) + "." + tasks.get(i));
-                    }
+                    ui.showTaskList(tasks);
                     break;
                 case MARK:
                     int markIndex = getTaskIndex(command, commandType.getKeyword(), tasks.size());
                     tasks.get(markIndex).markAsDone();
                     storage.saveTasks(tasks);
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println("  " + tasks.get(markIndex));
+                    ui.showMarkedTask(tasks.get(markIndex));
                     break;
                 case UNMARK:
                     int unmarkIndex = getTaskIndex(command, commandType.getKeyword(), tasks.size());
                     tasks.get(unmarkIndex).markAsNotDone();
                     storage.saveTasks(tasks);
-                    System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println("  " + tasks.get(unmarkIndex));
+                    ui.showUnmarkedTask(tasks.get(unmarkIndex));
                     break;
                 case DELETE:
                     int deleteIndex = getTaskIndex(command, commandType.getKeyword(), tasks.size());
                     Task removedTask = tasks.remove(deleteIndex);
                     storage.saveTasks(tasks);
-                    System.out.println("Noted. I've removed this task:");
-                    System.out.println("  " + removedTask);
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    ui.showDeletedTask(removedTask, tasks.size());
                     break;
                 case TODO:
                 case DEADLINE:
@@ -74,18 +55,16 @@ public class Beemo {
                     Task task = parseTask(command);
                     tasks.add(task);
                     storage.saveTasks(tasks);
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println("  " + task);
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    ui.showAddedTask(task, tasks.size());
                     break;
                 case UNKNOWN:
                     throw new BeemoException(
                             "OOPS... I don't know what that means ╥‸╥");
                 }
             } catch (BeemoException e) {
-                System.out.println(e.getMessage());
+                ui.showError(e.getMessage());
             }
-            System.out.println(divider);
+            ui.showLine();
         }
     }
 
