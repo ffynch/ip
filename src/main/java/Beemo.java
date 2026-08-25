@@ -35,15 +35,13 @@ public class Beemo {
                     break;
                 case MARK:
                     int markIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
-                    Task markedTask = tasks.markAsDone(markIndex);
-                    storage.saveTasks(tasks.asList());
-                    ui.showMarkedTask(markedTask);
+                    Command markCommand = new MarkCommand(markIndex);
+                    markCommand.execute(tasks, ui, storage);
                     break;
                 case UNMARK:
                     int unmarkIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
-                    Task unmarkedTask = tasks.markAsNotDone(unmarkIndex);
-                    storage.saveTasks(tasks.asList());
-                    ui.showUnmarkedTask(unmarkedTask);
+                    Command unmarkCommand = new UnmarkCommand(unmarkIndex);
+                    unmarkCommand.execute(tasks, ui, storage);
                     break;
                 case DELETE:
                     int deleteIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
