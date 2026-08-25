@@ -55,9 +55,8 @@ public class Beemo {
                 case DEADLINE:
                 case EVENT:
                     Task task = Parser.parseTask(command);
-                    tasks.add(task);
-                    storage.saveTasks(tasks.asList());
-                    ui.showAddedTask(task, tasks.size());
+                    Command addCommand = new AddCommand(task);
+                    addCommand.execute(tasks, ui, storage);
                     break;
                 case UNKNOWN:
                     throw new BeemoException(
