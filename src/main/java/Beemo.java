@@ -1,5 +1,4 @@
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class Beemo {
     public static void main(String[] args) {
@@ -7,11 +6,11 @@ public class Beemo {
         ui.showWelcome();
 
         Storage storage = new Storage(Path.of("data", "beemo.txt"));
-        ArrayList<Task> tasks;
+        TaskList tasks;
         try {
-            tasks = storage.loadTasks();
+            tasks = new TaskList(storage.loadTasks());
         } catch (BeemoException e) {
-            tasks = new ArrayList<>();
+            tasks = new TaskList();
             ui.showError(e.getMessage());
             ui.showLine();
         }
@@ -27,24 +26,24 @@ public class Beemo {
                     ui.showLine();
                     return;
                 case LIST:
-                    ui.showTaskList(tasks);
+                    ui.showTaskList(tasks.asList());
                     break;
                 case MARK:
                     int markIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
-                    tasks.get(markIndex).markAsDone();
-                    storage.saveTasks(tasks);
-                    ui.showMarkedTask(tasks.get(markIndex));
+                    Task markedTask = tasks.markAsDone(markIndex);
+                    storage.saveTasks(tasks.asList());
+                    ui.showMarkedTask(markedTask);
                     break;
                 case UNMARK:
                     int unmarkIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
-                    tasks.get(unmarkIndex).markAsNotDone();
-                    storage.saveTasks(tasks);
-                    ui.showUnmarkedTask(tasks.get(unmarkIndex));
+                    Task unmarkedTask = tasks.markAsNotDone(unmarkIndex);
+                    storage.saveTasks(tasks.asList());
+                    ui.showUnmarkedTask(unmarkedTask);
                     break;
                 case DELETE:
                     int deleteIndex = Parser.parseTaskIndex(command, commandType.getKeyword(), tasks.size());
-                    Task removedTask = tasks.remove(deleteIndex);
-                    storage.saveTasks(tasks);
+                    Task removedTask = tasks.delete(deleteIndex);
+                    storage.saveTasks(tasks.asList());
                     ui.showDeletedTask(removedTask, tasks.size());
                     break;
                 case TODO:
@@ -52,7 +51,7 @@ public class Beemo {
                 case EVENT:
                     Task task = Parser.parseTask(command);
                     tasks.add(task);
-                    storage.saveTasks(tasks);
+                    storage.saveTasks(tasks.asList());
                     ui.showAddedTask(task, tasks.size());
                     break;
                 case UNKNOWN:
