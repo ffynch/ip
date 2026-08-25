@@ -48,7 +48,7 @@ ____________________________________________________________
 
 ```text
 todo read book
-deadline return book /by Sunday
+deadline return book /by 2026-08-30
 event meeting /from Monday /to Tuesday
 mark 1
 delete 0
@@ -84,7 +84,7 @@ Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -107,7 +107,7 @@ OOPS... Task 4 is not in your list. ╥‸╥
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -156,6 +156,7 @@ todo read book
 todo
 deadline return book
 deadline return book /by Sunday
+deadline return book /by 2026-08-30
 event meeting /from Monday
 event meeting /from Monday /to Tuesday
 blah
@@ -190,8 +191,11 @@ ____________________________________________________________
 OOPS... A deadline needs a '/by' date or time. ╥‸╥
 ____________________________________________________________
 ____________________________________________________________
+OOPS... Deadline dates must use the yyyy-MM-dd format. ╥‸╥
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this task:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -208,7 +212,7 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] read book
-2.[D][ ] return book (by: Sunday)
+2.[D][ ] return book (by: Aug 30 2026)
 3.[E][ ] meeting (from: Monday to: Tuesday)
 ____________________________________________________________
 ____________________________________________________________
@@ -224,7 +228,7 @@ ____________________________________________________________
 
 ```text
 todo read book
-deadline return book /by Sunday
+deadline return book /by 2026-08-30
 mark 1
 mark 0
 mark two
@@ -256,7 +260,7 @@ Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -274,7 +278,7 @@ OOPS... Task 3 is not in your list. ╥‸╥
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Aug 30 2026)
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
@@ -285,12 +289,12 @@ OOPS... Task -1 is not in your list. ╥‸╥
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
-  [D][X] return book (by: Sunday)
+  [D][X] return book (by: Aug 30 2026)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] read book
-2.[D][X] return book (by: Sunday)
+2.[D][X] return book (by: Aug 30 2026)
 ____________________________________________________________
 ____________________________________________________________
 Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
@@ -362,14 +366,14 @@ Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
 ____________________________________________________________
 ```
 
-## Test case: Preserve deadline and event text
+## Test case: Format deadline date and preserve event text
 
-**Aim:** Verify deadline and event details remain strings and task status can be marked and unmarked.
+**Aim:** Verify deadline dates are reformatted while event details remain unchanged.
 
 ### Input
 
 ```text
-deadline do homework /by no idea :-p
+deadline do homework /by 2026-12-01
 event project meeting /from Mon 2pm /to 4pm
 mark 2
 unmark 2
@@ -391,7 +395,7 @@ What can I do for you?
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-  [D][ ] do homework (by: no idea :-p)
+  [D][ ] do homework (by: Dec 1 2026)
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -409,7 +413,7 @@ OK, I've marked this task as not done yet:
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
-1.[D][ ] do homework (by: no idea :-p)
+1.[D][ ] do homework (by: Dec 1 2026)
 2.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
