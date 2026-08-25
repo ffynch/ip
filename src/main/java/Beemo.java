@@ -1,8 +1,10 @@
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Beemo {
+public class deBeemo {
     public static void main(String[] args) {
         String divider = "____________________________________________________________";
         String banner = " ____  _____ _____ __  __  ___  \n"
@@ -124,14 +126,19 @@ public class Beemo {
                 throw new BeemoException("OOPS... A deadline needs a '/by' date or time. ╥‸╥");
             }
             String description = details.substring(0, byIndex).trim();
-            String by = details.substring(byIndex + 4).trim();
+            String byText = details.substring(byIndex + 4).trim();
             if (description.isEmpty()) {
                 throw new BeemoException("OOPS... The description of a deadline cannot be empty. ╥‸╥");
             }
-            if (by.isEmpty()) {
+            if (byText.isEmpty()) {
                 throw new BeemoException("OOPS... The '/by' date or time cannot be empty. ╥‸╥");
             }
-            return new Deadline(description, by);
+            try {
+                return new Deadline(description, LocalDate.parse(byText));
+            } catch (DateTimeParseException e) {
+                throw new BeemoException(
+                        "OOPS... Deadline dates must use the yyyy-MM-dd format. ╥‸╥");
+            }
         }
 
         String details = command.substring(5).trim();
