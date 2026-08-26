@@ -8,6 +8,7 @@ import beemo.command.AddCommand;
 import beemo.command.Command;
 import beemo.command.DeleteCommand;
 import beemo.command.ExitCommand;
+import beemo.command.FindCommand;
 import beemo.command.ListCommand;
 import beemo.command.MarkCommand;
 import beemo.command.UnmarkCommand;
@@ -46,6 +47,8 @@ public class Parser {
                 return new UnmarkCommand(parseTaskNumber(command, commandType.getKeyword()));
             case DELETE:
                 return new DeleteCommand(parseTaskNumber(command, commandType.getKeyword()));
+            case FIND:
+                return new FindCommand(parseKeyword(command, commandType.getKeyword()));
             case TODO:
                 // Fallthrough
             case DEADLINE:
@@ -57,6 +60,23 @@ public class Parser {
             default:
                 throw new BeemoException("OOPS... I don't know what that means ╥‸╥");
         }
+    }
+
+    /**
+     * Extracts and validates the keyword supplied to a find command.
+     *
+     * @param command Full command entered by the user.
+     * @param commandKeyword Keyword that identifies the command.
+     * @return Search keyword supplied by the user.
+     * @throws BeemoException If the search keyword is missing.
+     */
+    private static String parseKeyword(String command, String commandKeyword)
+            throws BeemoException {
+        String keyword = command.substring(commandKeyword.length()).trim();
+        if (keyword.isEmpty()) {
+            throw new BeemoException("OOPS... Please provide a keyword after 'find'.");
+        }
+        return keyword;
     }
 
     /**

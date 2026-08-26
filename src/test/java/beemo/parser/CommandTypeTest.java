@@ -14,6 +14,7 @@ class CommandTypeTest {
                 () -> assertEquals(CommandType.MARK, CommandType.from("mark 1")),
                 () -> assertEquals(CommandType.UNMARK, CommandType.from("unmark 1")),
                 () -> assertEquals(CommandType.DELETE, CommandType.from("delete 1")),
+                () -> assertEquals(CommandType.FIND, CommandType.from("find book")),
                 () -> assertEquals(CommandType.TODO, CommandType.from("todo read")),
                 () -> assertEquals(CommandType.DEADLINE,
                         CommandType.from("deadline return /by 2026-08-30")),

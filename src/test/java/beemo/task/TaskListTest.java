@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -72,5 +73,18 @@ class TaskListTest {
         assertThrows(UnsupportedOperationException.class,
                 () -> tasks.asList().add(new Todo("write report")));
         assertEquals(1, tasks.size());
+    }
+
+    @Test
+    void find_keywordInDescriptions_matchingTasksReturnedInOrder() {
+        Todo firstMatch = new Todo("read book");
+        Deadline nonMatch = new Deadline("submit report", LocalDate.of(2026, 8, 30));
+        Todo secondMatch = new Todo("return book");
+        TaskList tasks = new TaskList(List.of(firstMatch, nonMatch, secondMatch));
+
+        List<Task> matches = tasks.find("book");
+
+        assertEquals(List.of(firstMatch, secondMatch), matches);
+        assertTrue(tasks.find("2026").isEmpty());
     }
 }

@@ -16,6 +16,7 @@ import beemo.command.AddCommand;
 import beemo.command.Command;
 import beemo.command.DeleteCommand;
 import beemo.command.ExitCommand;
+import beemo.command.FindCommand;
 import beemo.command.ListCommand;
 import beemo.command.MarkCommand;
 import beemo.command.UnmarkCommand;
@@ -39,6 +40,7 @@ class ParserTest {
                 () -> assertInstanceOf(MarkCommand.class, Parser.parse("mark 1")),
                 () -> assertInstanceOf(UnmarkCommand.class, Parser.parse("unmark 1")),
                 () -> assertInstanceOf(DeleteCommand.class, Parser.parse("delete 1")),
+                () -> assertInstanceOf(FindCommand.class, Parser.parse("find book")),
                 () -> assertInstanceOf(AddCommand.class, Parser.parse("todo read")),
                 () -> assertInstanceOf(AddCommand.class,
                         Parser.parse("deadline return /by 2026-08-30")),
@@ -79,6 +81,7 @@ class ParserTest {
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("blah")),
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("mark")),
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("mark two")),
+                () -> assertThrows(BeemoException.class, () -> Parser.parse("find")),
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("todo")),
                 () -> assertThrows(BeemoException.class,
                         () -> Parser.parse("deadline return book")),
