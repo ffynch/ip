@@ -1,11 +1,5 @@
 package beemo.storage;
 
-import beemo.BeemoException;
-import beemo.task.Deadline;
-import beemo.task.Event;
-import beemo.task.Task;
-import beemo.task.Todo;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -13,6 +7,12 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import beemo.BeemoException;
+import beemo.task.Deadline;
+import beemo.task.Event;
+import beemo.task.Task;
+import beemo.task.Todo;
 
 /**
  * Loads tasks from and saves tasks to a local data file.
@@ -113,17 +113,17 @@ public class Storage {
         String[] fields = line.split(" \\| ");
         Task task;
         switch (fields[0]) {
-        case "T":
-            task = new Todo(fields[2]);
-            break;
-        case "D":
-            task = new Deadline(fields[2], LocalDate.parse(fields[3]));
-            break;
-        case "E":
-            task = new Event(fields[2], fields[3], fields[4]);
-            break;
-        default:
-            throw new BeemoException("OOPS... I couldn't load your saved tasks. ╥‸╥");
+            case "T":
+                task = new Todo(fields[2]);
+                break;
+            case "D":
+                task = new Deadline(fields[2], LocalDate.parse(fields[3]));
+                break;
+            case "E":
+                task = new Event(fields[2], fields[3], fields[4]);
+                break;
+            default:
+                throw new BeemoException("OOPS... I couldn't load your saved tasks. ╥‸╥");
         }
 
         if (fields[1].equals("1")) {

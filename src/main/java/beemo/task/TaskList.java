@@ -1,10 +1,10 @@
 package beemo.task;
 
-import beemo.BeemoException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import beemo.BeemoException;
 
 /**
  * Owns the task collection and provides operations that can change it.

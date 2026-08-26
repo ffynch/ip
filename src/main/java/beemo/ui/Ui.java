@@ -1,9 +1,9 @@
 package beemo.ui;
 
-import beemo.task.Task;
-
 import java.util.List;
 import java.util.Scanner;
+
+import beemo.task.Task;
 
 /**
  * Handles command input and text displayed to the user.
