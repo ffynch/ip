@@ -21,7 +21,17 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     /**
+     * Prevents construction of this utility class.
+     */
+    private Parser() {
+    }
+
+    /**
      * Converts a line of user input into an executable command.
+     *
+     * @param command Full command entered by the user.
+     * @return Executable command represented by the input.
+     * @throws BeemoException If the command is unrecognized or malformed.
      */
     public static Command parse(String command) throws BeemoException {
         CommandType commandType = CommandType.from(command);
@@ -46,6 +56,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Extracts and validates the task number supplied to a task command.
+     *
+     * @param command Full command entered by the user.
+     * @param keyword Keyword that precedes the task number.
+     * @return Parsed task number.
+     * @throws BeemoException If the task number is missing or is not an integer.
+     */
     private static int parseTaskNumber(String command, String keyword) throws BeemoException {
         String numberText = command.substring(keyword.length()).trim();
         if (numberText.isEmpty()) {
@@ -62,6 +80,13 @@ public class Parser {
         return taskNumber;
     }
 
+    /**
+     * Creates a task from a todo, deadline, or event command.
+     *
+     * @param command Full task command entered by the user.
+     * @return Task represented by the command.
+     * @throws BeemoException If the command contains invalid or missing task details.
+     */
     private static Task parseTask(String command) throws BeemoException {
         if (command.equals("todo") || command.startsWith("todo ")) {
             return parseTodo(command);
@@ -72,6 +97,13 @@ public class Parser {
         return parseEvent(command);
     }
 
+    /**
+     * Creates a todo from its command.
+     *
+     * @param command Full todo command entered by the user.
+     * @return Todo represented by the command.
+     * @throws BeemoException If the description is empty.
+     */
     private static Task parseTodo(String command) throws BeemoException {
         String description = command.substring(4).trim();
         if (description.isEmpty()) {
@@ -80,6 +112,13 @@ public class Parser {
         return new Todo(description);
     }
 
+    /**
+     * Creates a deadline from its command and parses its date.
+     *
+     * @param command Full deadline command entered by the user.
+     * @return Deadline represented by the command.
+     * @throws BeemoException If the description or date is missing, or the date is invalid.
+     */
     private static Task parseDeadline(String command) throws BeemoException {
         String details = command.substring(8).trim();
         int byIndex = details.indexOf("/by ");
@@ -102,6 +141,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Creates an event from its command.
+     *
+     * @param command Full event command entered by the user.
+     * @return Event represented by the command.
+     * @throws BeemoException If the description, start time, or end time is missing.
+     */
     private static Task parseEvent(String command) throws BeemoException {
         String details = command.substring(5).trim();
         int fromIndex = details.indexOf("/from ");

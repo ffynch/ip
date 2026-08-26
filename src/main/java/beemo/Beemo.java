@@ -19,6 +19,8 @@ public class Beemo {
 
     /**
      * Creates Beemo using the specified task data file.
+     *
+     * @param filePath Path of the task data file.
      */
     public Beemo(Path filePath) {
         ui = new Ui();
@@ -57,6 +59,11 @@ public class Beemo {
         }
     }
 
+    /**
+     * Starts Beemo using the default task data file.
+     *
+     * @param args Command-line arguments, which are not used.
+     */
     public static void main(String[] args) {
         new Beemo(Path.of("data", "beemo.txt")).run();
     }

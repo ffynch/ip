@@ -14,11 +14,14 @@ public class UnmarkCommand extends Command {
 
     /**
      * Creates a command targeting the task with the specified display number.
+     *
+     * @param taskNumber Display number of the task to unmark.
      */
     public UnmarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BeemoException {
         Task task = tasks.markAsNotDone(taskNumber);
