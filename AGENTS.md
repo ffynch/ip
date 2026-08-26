@@ -40,6 +40,13 @@ After every source-code update:
 2. Invoke the project-specific `test-ui` skill, even when the test plan does not need an update.
 3. Do not report the code update as complete unless the invoked test session passes. If a test fails, follow the skill's fail-fast reporting requirements and do not claim that later test cases passed.
 
+## Required JUnit testing after code updates
+
+Maintain JUnit tests for approximately the top 50% highest-value non-trivial public methods,
+prioritizing complex, core, and critical business logic. Review and update the JUnit tests
+after each code change so the test suite continues to meet this coverage target. Run the
+tests using `./gradlew test`.
+
 ## Git
 
 Use lightweight tags unless the user requests an annotated tag.
