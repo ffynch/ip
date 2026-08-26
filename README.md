@@ -23,3 +23,24 @@ Prerequisites: JDK 25, update Intellij to the most recent version.
    ```
 
 **Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+
+## Creating an executable JAR
+
+From the project root, build the fat JAR using the Gradle wrapper:
+
+```shell
+./gradlew clean shadowJar
+```
+
+The generated JAR is located at `build/libs/beemo.jar`. To distribute and run it:
+
+1. Copy `beemo.jar` into an empty folder.
+2. Open a terminal in that folder.
+3. Run:
+
+   ```shell
+   java -jar beemo.jar
+   ```
+
+The user needs Java 25 but does not need Gradle. When the task list first changes, Beemo
+creates its `data/beemo.txt` save file relative to the folder containing the JAR.
