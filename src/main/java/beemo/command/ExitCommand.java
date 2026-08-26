@@ -8,6 +8,12 @@ import beemo.ui.Ui;
  * Ends the current Beemo session.
  */
 public class ExitCommand extends Command {
+    /**
+     * Creates a command that exits Beemo.
+     */
+    public ExitCommand() {
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showGoodbye();

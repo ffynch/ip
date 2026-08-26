@@ -13,6 +13,9 @@ public class Deadline extends Task {
 
     protected LocalDate by;
 
+    /**
+     * Creates an incomplete deadline with the specified description and date.
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;

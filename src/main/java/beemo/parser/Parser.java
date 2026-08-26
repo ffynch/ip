@@ -1,5 +1,8 @@
 package beemo.parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import beemo.BeemoException;
 import beemo.command.AddCommand;
 import beemo.command.Command;
@@ -13,36 +16,39 @@ import beemo.task.Event;
 import beemo.task.Task;
 import beemo.task.Todo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 /**
  * Interprets user commands and converts their arguments into application objects.
  */
 public class Parser {
+    private Parser() {
+    }
+
     /**
      * Converts a line of user input into an executable command.
      */
     public static Command parse(String command) throws BeemoException {
         CommandType commandType = CommandType.from(command);
         switch (commandType) {
-        case BYE:
-            return new ExitCommand();
-        case LIST:
-            return new ListCommand();
-        case MARK:
-            return new MarkCommand(parseTaskNumber(command, commandType.getKeyword()));
-        case UNMARK:
-            return new UnmarkCommand(parseTaskNumber(command, commandType.getKeyword()));
-        case DELETE:
-            return new DeleteCommand(parseTaskNumber(command, commandType.getKeyword()));
-        case TODO:
-        case DEADLINE:
-        case EVENT:
-            return new AddCommand(parseTask(command));
-        case UNKNOWN:
-        default:
-            throw new BeemoException("OOPS... I don't know what that means ╥‸╥");
+            case BYE:
+                return new ExitCommand();
+            case LIST:
+                return new ListCommand();
+            case MARK:
+                return new MarkCommand(parseTaskNumber(command, commandType.getKeyword()));
+            case UNMARK:
+                return new UnmarkCommand(parseTaskNumber(command, commandType.getKeyword()));
+            case DELETE:
+                return new DeleteCommand(parseTaskNumber(command, commandType.getKeyword()));
+            case TODO:
+                // Fallthrough
+            case DEADLINE:
+                // Fallthrough
+            case EVENT:
+                return new AddCommand(parseTask(command));
+            case UNKNOWN:
+                // Fallthrough
+            default:
+                throw new BeemoException("OOPS... I don't know what that means ╥‸╥");
         }
     }
 

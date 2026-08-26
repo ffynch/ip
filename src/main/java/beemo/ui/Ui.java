@@ -1,9 +1,9 @@
 package beemo.ui;
 
-import beemo.task.Task;
-
 import java.util.List;
 import java.util.Scanner;
+
+import beemo.task.Task;
 
 /**
  * Handles command input and text displayed to the user.
@@ -18,6 +18,12 @@ public class Ui {
             + "|____/|_____|_____|_|  |_|\\___/ \n";
 
     private final Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Creates a user interface that reads commands from standard input.
+     */
+    public Ui() {
+    }
 
     /**
      * Displays Beemo's greeting.

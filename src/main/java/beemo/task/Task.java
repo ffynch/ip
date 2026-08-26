@@ -7,6 +7,9 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates an incomplete task with the specified description.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -24,10 +27,16 @@ public class Task {
         return isDone;
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void markAsDone() {
         isDone = true;
     }
 
+    /**
+     * Marks the task as incomplete.
+     */
     public void markAsNotDone() {
         isDone = false;
     }

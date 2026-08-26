@@ -47,6 +47,13 @@ prioritizing complex, core, and critical business logic. Review and update the J
 after each code change so the test suite continues to meet this coverage target. Run the
 tests using `./gradlew test`.
 
+## Required Java coding standard
+
+For every Java addition, edit, or review, use the project-specific
+`seedu-java-coding-standard` skill at
+`.codex/skills/seedu-java-coding-standard/SKILL.md`. All Java code must comply with the
+SE-EDU basic and intermediate Java coding standard summarized by that skill.
+
 ## Git
 
 Use lightweight tags unless the user requests an annotated tag.

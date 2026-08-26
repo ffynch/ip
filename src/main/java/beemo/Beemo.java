@@ -1,12 +1,12 @@
 package beemo;
 
+import java.nio.file.Path;
+
 import beemo.command.Command;
 import beemo.parser.Parser;
 import beemo.storage.Storage;
 import beemo.task.TaskList;
 import beemo.ui.Ui;
-
-import java.nio.file.Path;
 
 /**
  * Coordinates Beemo's user interface, task list, command parsing, and storage.
@@ -57,6 +57,9 @@ public class Beemo {
         }
     }
 
+    /**
+     * Starts Beemo using the default task data file.
+     */
     public static void main(String[] args) {
         new Beemo(Path.of("data", "beemo.txt")).run();
     }

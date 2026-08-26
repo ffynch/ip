@@ -15,11 +15,11 @@ public enum CommandType {
     UNKNOWN("", false);
 
     private final String keyword;
-    private final boolean acceptsArguments;
+    private final boolean canAcceptArguments;
 
-    CommandType(String keyword, boolean acceptsArguments) {
+    CommandType(String keyword, boolean canAcceptArguments) {
         this.keyword = keyword;
-        this.acceptsArguments = acceptsArguments;
+        this.canAcceptArguments = canAcceptArguments;
     }
 
     public String getKeyword() {
@@ -32,7 +32,7 @@ public enum CommandType {
     public static CommandType from(String input) {
         for (CommandType type : values()) {
             if (input.equals(type.keyword)
-                    || type.acceptsArguments && input.startsWith(type.keyword + " ")) {
+                    || (type.canAcceptArguments && input.startsWith(type.keyword + " "))) {
                 return type;
             }
         }
