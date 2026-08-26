@@ -1,3 +1,11 @@
+package beemo.storage;
+
+import beemo.BeemoException;
+import beemo.task.Deadline;
+import beemo.task.Event;
+import beemo.task.Task;
+import beemo.task.Todo;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

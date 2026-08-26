@@ -1,3 +1,11 @@
+package beemo;
+
+import beemo.command.Command;
+import beemo.parser.Parser;
+import beemo.storage.Storage;
+import beemo.task.TaskList;
+import beemo.ui.Ui;
+
 import java.nio.file.Path;
 
 /**

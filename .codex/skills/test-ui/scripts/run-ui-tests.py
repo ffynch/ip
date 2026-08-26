@@ -49,7 +49,7 @@ def parse_plan(plan_path: Path) -> list[TestCase]:
 
 def compile_program(repo: Path, classes_dir: Path) -> None:
     """Compile all Java source files into the temporary classes directory."""
-    sources = sorted((repo / "src/main/java").glob("*.java"))
+    sources = sorted((repo / "src/main/java").rglob("*.java"))
     if not sources:
         raise ValueError("No Java source files found in src/main/java")
     classes_dir.mkdir(parents=True, exist_ok=True)
@@ -79,7 +79,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     parser.add_argument("--plan", type=Path, default=Path("test/ui-test-plan.md"))
-    parser.add_argument("--main-class", default="Beemo")
+    parser.add_argument("--main-class", default="beemo.Beemo")
     args = parser.parse_args()
 
     repo = args.repo.resolve()

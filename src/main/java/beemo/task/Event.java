@@ -1,3 +1,5 @@
+package beemo.task;
+
 /**
  * Represents a task that occurs between a start and end date or time.
  */
