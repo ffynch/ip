@@ -1,3 +1,5 @@
+package beemo;
+
 /**
  * Represents an error caused by a command that Beemo cannot process.
  */

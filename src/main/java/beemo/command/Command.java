@@ -1,3 +1,10 @@
+package beemo.command;
+
+import beemo.BeemoException;
+import beemo.storage.Storage;
+import beemo.task.TaskList;
+import beemo.ui.Ui;
+
 /**
  * Represents an instruction that Beemo can execute.
  */

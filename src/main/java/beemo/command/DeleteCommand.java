@@ -1,3 +1,11 @@
+package beemo.command;
+
+import beemo.BeemoException;
+import beemo.storage.Storage;
+import beemo.task.Task;
+import beemo.task.TaskList;
+import beemo.ui.Ui;
+
 /**
  * Deletes a task from the task list.
  */

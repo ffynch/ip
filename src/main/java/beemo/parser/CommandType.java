@@ -1,3 +1,5 @@
+package beemo.parser;
+
 /**
  * Identifies the command represented by a line of user input.
  */
