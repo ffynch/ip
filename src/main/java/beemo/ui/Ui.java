@@ -20,6 +20,12 @@ public class Ui {
     private final Scanner scanner = new Scanner(System.in);
 
     /**
+     * Creates a user interface that reads commands from standard input.
+     */
+    public Ui() {
+    }
+
+    /**
      * Displays Beemo's greeting.
      */
     public void showWelcome() {
@@ -32,6 +38,8 @@ public class Ui {
 
     /**
      * Returns whether another command is available.
+     *
+     * @return True if another command can be read, otherwise false.
      */
     public boolean hasNextCommand() {
         return scanner.hasNextLine();
@@ -39,6 +47,8 @@ public class Ui {
 
     /**
      * Reads the next command entered by the user.
+     *
+     * @return Next command.
      */
     public String readCommand() {
         return scanner.nextLine();
@@ -60,6 +70,8 @@ public class Ui {
 
     /**
      * Displays all tasks in their current order.
+     *
+     * @param tasks Tasks to display.
      */
     public void showTaskList(List<Task> tasks) {
         System.out.println("Here are the tasks in your list:");
@@ -70,6 +82,8 @@ public class Ui {
 
     /**
      * Displays confirmation that a task was marked as done.
+     *
+     * @param task Task that was marked.
      */
     public void showMarkedTask(Task task) {
         System.out.println("Nice! I've marked this task as done:");
@@ -78,6 +92,8 @@ public class Ui {
 
     /**
      * Displays confirmation that a task was marked as not done.
+     *
+     * @param task Task that was unmarked.
      */
     public void showUnmarkedTask(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
@@ -86,6 +102,9 @@ public class Ui {
 
     /**
      * Displays confirmation that a task was deleted.
+     *
+     * @param task Task that was deleted.
+     * @param taskCount Number of tasks remaining.
      */
     public void showDeletedTask(Task task, int taskCount) {
         System.out.println("Noted. I've removed this task:");
@@ -95,6 +114,9 @@ public class Ui {
 
     /**
      * Displays confirmation that a task was added.
+     *
+     * @param task Task that was added.
+     * @param taskCount Number of tasks after the addition.
      */
     public void showAddedTask(Task task, int taskCount) {
         System.out.println("Got it. I've added this task:");
@@ -104,6 +126,8 @@ public class Ui {
 
     /**
      * Displays an error message.
+     *
+     * @param message Error message to display.
      */
     public void showError(String message) {
         System.out.println(message);

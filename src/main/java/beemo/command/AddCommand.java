@@ -14,11 +14,14 @@ public class AddCommand extends Command {
 
     /**
      * Creates a command that will add the supplied task.
+     *
+     * @param task Task to add.
      */
     public AddCommand(Task task) {
         this.task = task;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BeemoException {
         tasks.add(task);

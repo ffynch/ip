@@ -14,11 +14,14 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a command targeting the task with the specified display number.
+     *
+     * @param taskNumber Display number of the task to delete.
      */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BeemoException {
         Task removedTask = tasks.delete(taskNumber);

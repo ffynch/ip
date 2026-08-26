@@ -22,12 +22,20 @@ public class Storage {
 
     private final Path filePath;
 
+    /**
+     * Creates storage that reads from and writes to the specified file.
+     *
+     * @param filePath Path of the task data file.
+     */
     public Storage(Path filePath) {
         this.filePath = filePath;
     }
 
     /**
      * Loads all tasks, returning an empty list when the data file does not exist yet.
+     *
+     * @return Tasks loaded from the data file.
+     * @throws BeemoException If the data file cannot be read or parsed.
      */
     public ArrayList<Task> loadTasks() throws BeemoException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -48,6 +56,9 @@ public class Storage {
 
     /**
      * Saves all tasks, creating the data directory on the first write.
+     *
+     * @param tasks Tasks to save.
+     * @throws BeemoException If the data file cannot be written.
      */
     public void saveTasks(List<Task> tasks) throws BeemoException {
         ArrayList<String> lines = new ArrayList<>();
@@ -66,6 +77,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts a task into its persistent text representation.
+     *
+     * @param task Task to convert.
+     * @return Text record representing the task.
+     * @throws BeemoException If the task type is unsupported.
+     */
     private String formatTask(Task task) throws BeemoException {
         String status = task.isDone() ? "1" : "0";
         if (task instanceof Todo) {
@@ -84,6 +102,13 @@ public class Storage {
         throw new BeemoException("OOPS... I couldn't save this task. ╥‸╥");
     }
 
+    /**
+     * Converts a persistent text record back into a task.
+     *
+     * @param line Text record to parse.
+     * @return Task represented by the record.
+     * @throws BeemoException If the record contains an unsupported task type.
+     */
     private Task parseTask(String line) throws BeemoException {
         String[] fields = line.split(" \\| ");
         Task task;

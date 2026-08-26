@@ -4,30 +4,53 @@ package beemo.parser;
  * Identifies the command represented by a line of user input.
  */
 public enum CommandType {
+    /** Exits Beemo. */
     BYE("bye", false),
+    /** Displays all tasks. */
     LIST("list", false),
+    /** Marks a task as completed. */
     MARK("mark", true),
+    /** Marks a task as incomplete. */
     UNMARK("unmark", true),
+    /** Deletes a task. */
     DELETE("delete", true),
+    /** Adds a todo. */
     TODO("todo", true),
+    /** Adds a deadline. */
     DEADLINE("deadline", true),
+    /** Adds an event. */
     EVENT("event", true),
+    /** Represents unrecognized input. */
     UNKNOWN("", false);
 
     private final String keyword;
     private final boolean acceptsArguments;
 
+    /**
+     * Creates a command type with its keyword and argument behavior.
+     *
+     * @param keyword Word that identifies the command.
+     * @param acceptsArguments Whether text may follow the keyword.
+     */
     CommandType(String keyword, boolean acceptsArguments) {
         this.keyword = keyword;
         this.acceptsArguments = acceptsArguments;
     }
 
+    /**
+     * Returns the word that identifies this command type.
+     *
+     * @return Command keyword.
+     */
     public String getKeyword() {
         return keyword;
     }
 
     /**
      * Returns the command type matching the input's first keyword.
+     *
+     * @param input Full command entered by the user.
+     * @return Matching command type, or {@link #UNKNOWN} if none matches.
      */
     public static CommandType from(String input) {
         for (CommandType type : values()) {
