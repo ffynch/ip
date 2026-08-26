@@ -56,6 +56,11 @@ SE-EDU basic and intermediate Java coding standard summarized by that skill.
 
 ## Git
 
+For every future commit-message or branch-name proposal, and before creating any
+commit or branch, use the project-specific `seedu-git-standard` skill at
+`.codex/skills/seedu-git-standard/SKILL.md`. Follow the SE-EDU Git conventions
+summarized by that skill, except when the course explicitly requires an exact name.
+
 Use lightweight tags unless the user requests an annotated tag.
 When proposing or creating a commit message, include enough detail to explain the rationale for the change.
 Do not commit or push unless explicitly asked.
