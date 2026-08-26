@@ -72,6 +72,19 @@ public class TaskList {
         return Collections.unmodifiableList(tasks);
     }
 
+    /**
+     * Returns tasks whose descriptions contain the specified keyword.
+     */
+    public List<Task> find(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+        return Collections.unmodifiableList(matchingTasks);
+    }
+
     private int toIndex(int taskNumber) throws BeemoException {
         if (taskNumber < 1 || taskNumber > tasks.size()) {
             throw new BeemoException(

@@ -2,6 +2,72 @@
 
 The test runner compiles the Java files in `src/main/java`, starts a fresh `Beemo` process in an isolated temporary working directory for each case, sends the listed commands through standard input, and compares the complete standard output exactly. Isolation ensures that saved task data from one case cannot affect another case. Cases run from top to bottom and testing stops at the first failure.
 
+## Test case: Find tasks by description keyword
+
+**Aim:** Verify that find displays only tasks whose descriptions contain the keyword.
+
+### Input
+
+```text
+todo read book
+deadline return book /by 2026-08-30
+event book club /from Monday /to Tuesday
+todo submit report
+find book
+find missing
+find
+bye
+```
+
+### Expected output
+
+```text
+____________________________________________________________
+ ____  _____ _____ __  __  ___  
+| __ )| ____| ____|  \/  |/ _ \ 
+|  _ \|  _| |  _| | |\/| | | | |
+| |_) | |___| |___| |  | | |_| |
+|____/|_____|_____|_|  |_|\___/ 
+Hello! I'm Beemo.
+What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [T][ ] read book
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [D][ ] return book (by: Aug 30 2026)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [E][ ] book club (from: Monday to: Tuesday)
+Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [T][ ] submit report
+Now you have 4 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][ ] read book
+2.[D][ ] return book (by: Aug 30 2026)
+3.[E][ ] book club (from: Monday to: Tuesday)
+____________________________________________________________
+____________________________________________________________
+Here are the matching tasks in your list:
+____________________________________________________________
+____________________________________________________________
+OOPS... Please provide a keyword after 'find'.
+____________________________________________________________
+____________________________________________________________
+Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
+____________________________________________________________
+```
+
 ## Test case: Add and list a todo
 
 **Aim:** Verify that a todo is stored with the correct type and incomplete status.
