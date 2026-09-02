@@ -34,6 +34,30 @@ public class Beemo {
     }
 
     /**
+     * Executes one command and returns the response intended for the user.
+     *
+     * @param input Command entered by the user.
+     * @return Beemo's response to the command.
+     */
+    public String getResponse(String input) {
+        StringBuilder response = new StringBuilder();
+        Ui responseUi = new Ui(line -> {
+            if (!response.isEmpty()) {
+                response.append(System.lineSeparator());
+            }
+            response.append(line);
+        });
+
+        try {
+            Command command = Parser.parse(input);
+            command.execute(tasks, responseUi, storage);
+        } catch (BeemoException e) {
+            responseUi.showError(e.getMessage());
+        }
+        return response.toString();
+    }
+
+    /**
      * Runs Beemo until the user enters the exit command or input ends.
      */
     public void run() {

@@ -2,6 +2,7 @@ package beemo.ui;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import beemo.task.Task;
 
@@ -15,14 +16,27 @@ public class Ui {
             + "| __ )| ____| ____|  \\/  |/ _ \\ \n"
             + "|  _ \\|  _| |  _| | |\\/| | | | |\n"
             + "| |_) | |___| |___| |  | | |_| |\n"
-            + "|____/|_____|_____|_|  |_|\\___/ \n";
+            + "|____/|_____|_____|_|  |_|\\___/ ";
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+    private final Consumer<String> output;
 
     /**
      * Creates a user interface that reads commands from standard input.
      */
     public Ui() {
+        scanner = new Scanner(System.in);
+        output = System.out::println;
+    }
+
+    /**
+     * Creates a user interface that sends each output line to the supplied consumer.
+     *
+     * @param output Destination for output lines.
+     */
+    public Ui(Consumer<String> output) {
+        scanner = null;
+        this.output = output;
     }
 
     /**
@@ -30,9 +44,9 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.print(BANNER);
-        System.out.println("Hello! I'm Beemo.");
-        System.out.println("What can I do for you?");
+        output.accept(BANNER);
+        output.accept("Hello! I'm Beemo.");
+        output.accept("What can I do for you?");
         showLine();
     }
 
@@ -42,7 +56,7 @@ public class Ui {
      * @return True if another command can be read, otherwise false.
      */
     public boolean hasNextCommand() {
-        return scanner.hasNextLine();
+        return scanner != null && scanner.hasNextLine();
     }
 
     /**
@@ -58,14 +72,14 @@ public class Ui {
      * Displays the horizontal response divider.
      */
     public void showLine() {
-        System.out.println(DIVIDER);
+        output.accept(DIVIDER);
     }
 
     /**
      * Displays Beemo's farewell.
      */
     public void showGoodbye() {
-        System.out.println("Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა");
+        output.accept("Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა");
     }
 
     /**
@@ -74,7 +88,7 @@ public class Ui {
      * @param tasks Tasks to display.
      */
     public void showTaskList(List<Task> tasks) {
-        System.out.println("Here are the tasks in your list:");
+        output.accept("Here are the tasks in your list:");
         showTasks(tasks);
     }
 
@@ -84,7 +98,7 @@ public class Ui {
      * @param tasks Matching tasks to display.
      */
     public void showMatchingTasks(List<Task> tasks) {
-        System.out.println("Here are the matching tasks in your list:");
+        output.accept("Here are the matching tasks in your list:");
         showTasks(tasks);
     }
 
@@ -95,7 +109,7 @@ public class Ui {
      */
     private void showTasks(List<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + "." + tasks.get(i));
+            output.accept((i + 1) + "." + tasks.get(i));
         }
     }
 
@@ -105,8 +119,8 @@ public class Ui {
      * @param task Task that was marked.
      */
     public void showMarkedTask(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + task);
+        output.accept("Nice! I've marked this task as done:");
+        output.accept("  " + task);
     }
 
     /**
@@ -115,8 +129,8 @@ public class Ui {
      * @param task Task that was unmarked.
      */
     public void showUnmarkedTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + task);
+        output.accept("OK, I've marked this task as not done yet:");
+        output.accept("  " + task);
     }
 
     /**
@@ -126,8 +140,8 @@ public class Ui {
      * @param taskCount Number of tasks remaining.
      */
     public void showDeletedTask(Task task, int taskCount) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + task);
+        output.accept("Noted. I've removed this task:");
+        output.accept("  " + task);
         showTaskCount(taskCount);
     }
 
@@ -138,8 +152,8 @@ public class Ui {
      * @param taskCount Number of tasks after the addition.
      */
     public void showAddedTask(Task task, int taskCount) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
+        output.accept("Got it. I've added this task:");
+        output.accept("  " + task);
         showTaskCount(taskCount);
     }
 
@@ -149,10 +163,10 @@ public class Ui {
      * @param message Error message to display.
      */
     public void showError(String message) {
-        System.out.println(message);
+        output.accept(message);
     }
 
     private void showTaskCount(int taskCount) {
-        System.out.println("Now you have " + taskCount + " tasks in the list.");
+        output.accept("Now you have " + taskCount + " tasks in the list.");
     }
 }

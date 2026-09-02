@@ -1,5 +1,18 @@
 # UI Test Plan
 
+## JavaFX GUI smoke test
+
+Run `./gradlew run` and verify the following manually:
+
+1. The Beemo window opens with a welcome message, chat history, command field, and Send button.
+2. Enter `todo read book` and verify both the user message and Beemo's confirmation appear.
+3. Enter `list` and verify the added task appears in the response.
+4. Enter an invalid command and verify Beemo displays an error without closing the window.
+5. Resize the window and verify the input field, Send button, and chat history remain usable.
+6. Close the window and verify the Gradle run finishes.
+
+The automated cases below continue to exercise the command-line interface and core chatbot behavior.
+
 The test runner compiles the Java files in `src/main/java`, starts a fresh `Beemo` process in an isolated temporary working directory for each case, sends the listed commands through standard input, and compares the complete standard output exactly. Isolation ensures that saved task data from one case cannot affect another case. Cases run from top to bottom and testing stops at the first failure.
 
 ## Test case: Find tasks by description keyword
