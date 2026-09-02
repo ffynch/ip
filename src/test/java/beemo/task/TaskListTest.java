@@ -1,6 +1,5 @@
 package beemo.task;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -58,11 +57,10 @@ class TaskListTest {
     void taskNumberOutsideList_allMutationsThrowException() {
         TaskList tasks = new TaskList(List.of(new Todo("read book")));
 
-        assertAll(
-                () -> assertThrows(BeemoException.class, () -> tasks.delete(0)),
-                () -> assertThrows(BeemoException.class, () -> tasks.delete(2)),
-                () -> assertThrows(BeemoException.class, () -> tasks.markAsDone(-1)),
-                () -> assertThrows(BeemoException.class, () -> tasks.markAsNotDone(2)));
+        assertThrows(BeemoException.class, () -> tasks.delete(0));
+        assertThrows(BeemoException.class, () -> tasks.delete(2));
+        assertThrows(BeemoException.class, () -> tasks.markAsDone(-1));
+        assertThrows(BeemoException.class, () -> tasks.markAsNotDone(2));
         assertEquals(1, tasks.size());
     }
 
@@ -70,8 +68,8 @@ class TaskListTest {
     void asList_attemptedModification_unsupportedOperationExceptionThrown() {
         TaskList tasks = new TaskList(List.of(new Todo("read book")));
 
-        assertThrows(UnsupportedOperationException.class,
-                () -> tasks.asList().add(new Todo("write report")));
+        assertThrows(UnsupportedOperationException.class, () ->
+                tasks.asList().add(new Todo("write report")));
         assertEquals(1, tasks.size());
     }
 

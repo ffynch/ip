@@ -1,6 +1,5 @@
 package beemo.parser;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -34,18 +33,15 @@ class ParserTest {
 
     @Test
     void parse_supportedCommands_correctCommandTypes() throws BeemoException {
-        assertAll(
-                () -> assertInstanceOf(ExitCommand.class, Parser.parse("bye")),
-                () -> assertInstanceOf(ListCommand.class, Parser.parse("list")),
-                () -> assertInstanceOf(MarkCommand.class, Parser.parse("mark 1")),
-                () -> assertInstanceOf(UnmarkCommand.class, Parser.parse("unmark 1")),
-                () -> assertInstanceOf(DeleteCommand.class, Parser.parse("delete 1")),
-                () -> assertInstanceOf(FindCommand.class, Parser.parse("find book")),
-                () -> assertInstanceOf(AddCommand.class, Parser.parse("todo read")),
-                () -> assertInstanceOf(AddCommand.class,
-                        Parser.parse("deadline return /by 2026-08-30")),
-                () -> assertInstanceOf(AddCommand.class,
-                        Parser.parse("event meeting /from 2pm /to 4pm")));
+        assertInstanceOf(ExitCommand.class, Parser.parse("bye"));
+        assertInstanceOf(ListCommand.class, Parser.parse("list"));
+        assertInstanceOf(MarkCommand.class, Parser.parse("mark 1"));
+        assertInstanceOf(UnmarkCommand.class, Parser.parse("unmark 1"));
+        assertInstanceOf(DeleteCommand.class, Parser.parse("delete 1"));
+        assertInstanceOf(FindCommand.class, Parser.parse("find book"));
+        assertInstanceOf(AddCommand.class, Parser.parse("todo read"));
+        assertInstanceOf(AddCommand.class, Parser.parse("deadline return /by 2026-08-30"));
+        assertInstanceOf(AddCommand.class, Parser.parse("event meeting /from 2pm /to 4pm"));
     }
 
     @Test
@@ -77,18 +73,14 @@ class ParserTest {
 
     @Test
     void parse_invalidCommands_exceptionThrown() {
-        assertAll(
-                () -> assertThrows(BeemoException.class, () -> Parser.parse("blah")),
-                () -> assertThrows(BeemoException.class, () -> Parser.parse("mark")),
-                () -> assertThrows(BeemoException.class, () -> Parser.parse("mark two")),
-                () -> assertThrows(BeemoException.class, () -> Parser.parse("find")),
-                () -> assertThrows(BeemoException.class, () -> Parser.parse("todo")),
-                () -> assertThrows(BeemoException.class,
-                        () -> Parser.parse("deadline return book")),
-                () -> assertThrows(BeemoException.class,
-                        () -> Parser.parse("deadline return book /by Sunday")),
-                () -> assertThrows(BeemoException.class,
-                        () -> Parser.parse("event meeting /from Monday")));
+        assertThrows(BeemoException.class, () -> Parser.parse("blah"));
+        assertThrows(BeemoException.class, () -> Parser.parse("mark"));
+        assertThrows(BeemoException.class, () -> Parser.parse("mark two"));
+        assertThrows(BeemoException.class, () -> Parser.parse("find"));
+        assertThrows(BeemoException.class, () -> Parser.parse("todo"));
+        assertThrows(BeemoException.class, () -> Parser.parse("deadline return book"));
+        assertThrows(BeemoException.class, () -> Parser.parse("deadline return book /by Sunday"));
+        assertThrows(BeemoException.class, () -> Parser.parse("event meeting /from Monday"));
     }
 
     private Task executeAddCommand(String input) throws BeemoException {

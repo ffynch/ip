@@ -80,7 +80,7 @@ class StorageTest {
         Storage storage = new Storage(tempDirectory.resolve("tasks.txt"));
         Task unsupportedTask = new Task("unsupported");
 
-        assertThrows(BeemoException.class,
-                () -> storage.saveTasks(List.of(unsupportedTask)));
+        assertThrows(BeemoException.class, () ->
+                storage.saveTasks(List.of(unsupportedTask)));
     }
 }
