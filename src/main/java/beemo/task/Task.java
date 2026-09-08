@@ -4,10 +4,8 @@ package beemo.task;
  * Represents a task and whether it has been completed.
  */
 public class Task {
-    /** Description of the task. */
-    protected String description;
-    /** Whether the task has been completed. */
-    protected boolean isDone;
+    private final String description;
+    private boolean isDone;
 
     /**
      * Creates an incomplete task with the specified description.

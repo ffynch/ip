@@ -4,10 +4,8 @@ package beemo.task;
  * Represents a task that occurs between a start and end date or time.
  */
 public class Event extends Task {
-    /** Start time of the event. */
-    protected String from;
-    /** End time of the event. */
-    protected String to;
+    private final String from;
+    private final String to;
 
     /**
      * Creates an incomplete event with the specified description and times.
