@@ -25,6 +25,9 @@ public class TaskList {
      * @param tasks Initial tasks to copy into the list.
      */
     public TaskList(List<Task> tasks) {
+        assert tasks != null : "Initial task list must not be null";
+        assert tasks.stream().noneMatch(task -> task == null)
+                : "Initial task list must not contain null tasks";
         this.tasks = new ArrayList<>(tasks);
     }
 
@@ -43,6 +46,7 @@ public class TaskList {
      * @param task Task to add.
      */
     public void add(Task task) {
+        assert task != null : "Task to add must not be null";
         tasks.add(task);
     }
 
@@ -99,6 +103,7 @@ public class TaskList {
      * @return Unmodifiable list of matching tasks in their original order.
      */
     public List<Task> find(String keyword) {
+        assert keyword != null && !keyword.isBlank() : "Search keyword must not be blank";
         return tasks.stream()
                 .filter(task -> task.getDescription().contains(keyword))
                 .toList();

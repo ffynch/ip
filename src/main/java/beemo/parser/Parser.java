@@ -111,6 +111,9 @@ public class Parser {
      * @throws BeemoException If the command contains invalid or missing task details.
      */
     private static Task parseTask(String command) throws BeemoException {
+        assert command.startsWith("todo")
+                || command.startsWith("deadline")
+                || command.startsWith("event") : "Command must describe a task";
         if (command.equals("todo") || command.startsWith("todo ")) {
             return parseTodo(command);
         }
