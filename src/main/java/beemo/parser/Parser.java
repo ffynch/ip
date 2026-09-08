@@ -21,6 +21,13 @@ import beemo.task.Todo;
  * Interprets user commands and converts their arguments into application objects.
  */
 public class Parser {
+    private static final String TODO_KEYWORD = "todo";
+    private static final String DEADLINE_KEYWORD = "deadline";
+    private static final String EVENT_KEYWORD = "event";
+    private static final String BY_DELIMITER = "/by ";
+    private static final String FROM_DELIMITER = "/from ";
+    private static final String TO_DELIMITER = "/to ";
+
     /**
      * Prevents construction of this utility class.
      */
@@ -131,7 +138,7 @@ public class Parser {
      * @throws BeemoException If the description is empty.
      */
     private static Task parseTodo(String command) throws BeemoException {
-        String description = command.substring(4).trim();
+        String description = command.substring(TODO_KEYWORD.length()).trim();
         if (description.isEmpty()) {
             throw new BeemoException("OOPS... The description of a todo cannot be empty. ╥‸╥");
         }
@@ -146,13 +153,13 @@ public class Parser {
      * @throws BeemoException If the description or date is missing, or the date is invalid.
      */
     private static Task parseDeadline(String command) throws BeemoException {
-        String details = command.substring(8).trim();
-        int byIndex = details.indexOf("/by ");
+        String details = command.substring(DEADLINE_KEYWORD.length()).trim();
+        int byIndex = details.indexOf(BY_DELIMITER);
         if (byIndex < 0) {
             throw new BeemoException("OOPS... A deadline needs a '/by' date or time. ╥‸╥");
         }
         String description = details.substring(0, byIndex).trim();
-        String byText = details.substring(byIndex + 4).trim();
+        String byText = details.substring(byIndex + BY_DELIMITER.length()).trim();
         if (description.isEmpty()) {
             throw new BeemoException("OOPS... The description of a deadline cannot be empty. ╥‸╥");
         }
@@ -175,15 +182,17 @@ public class Parser {
      * @throws BeemoException If the description, start time, or end time is missing.
      */
     private static Task parseEvent(String command) throws BeemoException {
-        String details = command.substring(5).trim();
-        int fromIndex = details.indexOf("/from ");
-        int toIndex = fromIndex < 0 ? -1 : details.indexOf("/to ", fromIndex + 6);
+        String details = command.substring(EVENT_KEYWORD.length()).trim();
+        int fromIndex = details.indexOf(FROM_DELIMITER);
+        int toIndex = fromIndex < 0
+                ? -1
+                : details.indexOf(TO_DELIMITER, fromIndex + FROM_DELIMITER.length());
         if (fromIndex < 0 || toIndex < 0) {
             throw new BeemoException("OOPS... An event needs both '/from' and '/to' times. ╥‸╥");
         }
         String description = details.substring(0, fromIndex).trim();
-        String from = details.substring(fromIndex + 6, toIndex).trim();
-        String to = details.substring(toIndex + 4).trim();
+        String from = details.substring(fromIndex + FROM_DELIMITER.length(), toIndex).trim();
+        String to = details.substring(toIndex + TO_DELIMITER.length()).trim();
         if (description.isEmpty()) {
             throw new BeemoException("OOPS... The description of an event cannot be empty. ╥‸╥");
         }

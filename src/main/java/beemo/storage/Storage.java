@@ -92,12 +92,12 @@ public class Storage {
         if (task instanceof Deadline) {
             Deadline deadline = (Deadline) task;
             return String.join(SEPARATOR, "D", status, task.getDescription(),
-                    deadline.getBy().toString());
+                    deadline.getDueDate().toString());
         }
         if (task instanceof Event) {
             Event event = (Event) task;
             return String.join(SEPARATOR, "E", status, task.getDescription(),
-                    event.getFrom(), event.getTo());
+                    event.getStartTime(), event.getEndTime());
         }
         throw new BeemoException("OOPS... I couldn't save this task. ╥‸╥");
     }

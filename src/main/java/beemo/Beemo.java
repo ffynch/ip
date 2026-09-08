@@ -49,12 +49,7 @@ public class Beemo {
             response.append(line);
         });
 
-        try {
-            Command command = Parser.parse(input);
-            command.execute(tasks, responseUi, storage);
-        } catch (BeemoException e) {
-            responseUi.showError(e.getMessage());
-        }
+        executeCommand(input, responseUi);
         return response.toString();
     }
 
@@ -73,14 +68,28 @@ public class Beemo {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-                Command command = Parser.parse(fullCommand);
-                command.execute(tasks, ui, storage);
-                isExit = command.isExit();
-            } catch (BeemoException e) {
-                ui.showError(e.getMessage());
+                isExit = executeCommand(fullCommand, ui);
             } finally {
                 ui.showLine();
             }
+        }
+    }
+
+    /**
+     * Executes a command using the supplied UI and reports whether Beemo should exit.
+     *
+     * @param input Command entered by the user.
+     * @param commandUi UI that receives command output.
+     * @return True if the command exits Beemo, otherwise false.
+     */
+    private boolean executeCommand(String input, Ui commandUi) {
+        try {
+            Command command = Parser.parse(input);
+            command.execute(tasks, commandUi, storage);
+            return command.isExit();
+        } catch (BeemoException e) {
+            commandUi.showError(e.getMessage());
+            return false;
         }
     }
 
