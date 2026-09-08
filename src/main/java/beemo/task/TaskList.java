@@ -104,13 +104,9 @@ public class TaskList {
      */
     public List<Task> find(String keyword) {
         assert keyword != null && !keyword.isBlank() : "Search keyword must not be blank";
-        ArrayList<Task> matchingTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.getDescription().contains(keyword)) {
-                matchingTasks.add(task);
-            }
-        }
-        return Collections.unmodifiableList(matchingTasks);
+        return tasks.stream()
+                .filter(task -> task.getDescription().contains(keyword))
+                .toList();
     }
 
     /**
