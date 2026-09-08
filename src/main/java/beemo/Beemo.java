@@ -31,6 +31,7 @@ public class Beemo {
             tasks = new TaskList();
             loadingError = e.getMessage();
         }
+        assert tasks != null : "Task list must be initialized";
     }
 
     /**
