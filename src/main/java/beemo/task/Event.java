@@ -4,20 +4,20 @@ package beemo.task;
  * Represents a task that occurs between a start and end date or time.
  */
 public class Event extends Task {
-    private final String from;
-    private final String to;
+    private final String startTime;
+    private final String endTime;
 
     /**
      * Creates an incomplete event with the specified description and times.
      *
      * @param description Description of the event.
-     * @param from Start time of the event.
-     * @param to End time of the event.
+     * @param startTime Start time of the event.
+     * @param endTime End time of the event.
      */
-    public Event(String description, String from, String to) {
+    public Event(String description, String startTime, String endTime) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     /**
@@ -25,8 +25,8 @@ public class Event extends Task {
      *
      * @return Event start time.
      */
-    public String getFrom() {
-        return from;
+    public String getStartTime() {
+        return startTime;
     }
 
     /**
@@ -34,8 +34,8 @@ public class Event extends Task {
      *
      * @return Event end time.
      */
-    public String getTo() {
-        return to;
+    public String getEndTime() {
+        return endTime;
     }
 
     /**
@@ -45,6 +45,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
+        return "[E]" + super.toString() + " (from: " + startTime + " to: " + endTime + ")";
     }
 }
