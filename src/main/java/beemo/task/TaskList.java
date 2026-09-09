@@ -3,6 +3,7 @@ package beemo.task;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import beemo.BeemoException;
 
@@ -97,15 +98,17 @@ public class TaskList {
     }
 
     /**
-     * Returns tasks whose descriptions contain the specified keyword.
+     * Returns tasks whose descriptions contain the specified keyword, ignoring letter case.
      *
      * @param keyword Keyword to find in task descriptions.
      * @return Unmodifiable list of matching tasks in their original order.
      */
     public List<Task> find(String keyword) {
         assert keyword != null && !keyword.isBlank() : "Search keyword must not be blank";
+        String normalizedKeyword = keyword.toLowerCase(Locale.ROOT);
         return tasks.stream()
-                .filter(task -> task.getDescription().contains(keyword))
+                .filter(task -> task.getDescription().toLowerCase(Locale.ROOT)
+                        .contains(normalizedKeyword))
                 .toList();
     }
 
