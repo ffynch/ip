@@ -6,6 +6,8 @@ package beemo.parser;
 public enum CommandType {
     /** Exits Beemo. */
     BYE("bye", false),
+    /** Displays guidance for supported commands. */
+    HELP("help", false),
     /** Displays all tasks. */
     LIST("list", false),
     /** Marks a task as completed. */

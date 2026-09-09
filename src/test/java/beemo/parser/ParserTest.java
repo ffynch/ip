@@ -17,6 +17,7 @@ import beemo.command.Command;
 import beemo.command.DeleteCommand;
 import beemo.command.ExitCommand;
 import beemo.command.FindCommand;
+import beemo.command.HelpCommand;
 import beemo.command.ListCommand;
 import beemo.command.MarkCommand;
 import beemo.command.UnmarkCommand;
@@ -36,6 +37,7 @@ class ParserTest {
     void parse_supportedCommands_correctCommandTypes() throws BeemoException {
         assertAll(
                 () -> assertInstanceOf(ExitCommand.class, Parser.parse("bye")),
+                () -> assertInstanceOf(HelpCommand.class, Parser.parse("help")),
                 () -> assertInstanceOf(ListCommand.class, Parser.parse("list")),
                 () -> assertInstanceOf(MarkCommand.class, Parser.parse("mark 1")),
                 () -> assertInstanceOf(UnmarkCommand.class, Parser.parse("unmark 1")),

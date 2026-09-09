@@ -10,6 +10,7 @@ class CommandTypeTest {
     void from_supportedCommands_correctTypes() {
         assertAll(
                 () -> assertEquals(CommandType.BYE, CommandType.from("bye")),
+                () -> assertEquals(CommandType.HELP, CommandType.from("help")),
                 () -> assertEquals(CommandType.LIST, CommandType.from("list")),
                 () -> assertEquals(CommandType.MARK, CommandType.from("mark 1")),
                 () -> assertEquals(CommandType.UNMARK, CommandType.from("unmark 1")),
@@ -27,6 +28,7 @@ class CommandTypeTest {
         assertAll(
                 () -> assertEquals(CommandType.UNKNOWN, CommandType.from("")),
                 () -> assertEquals(CommandType.UNKNOWN, CommandType.from("bye now")),
+                () -> assertEquals(CommandType.UNKNOWN, CommandType.from("help me")),
                 () -> assertEquals(CommandType.UNKNOWN, CommandType.from("list later")),
                 () -> assertEquals(CommandType.UNKNOWN, CommandType.from("marking 1")),
                 () -> assertEquals(CommandType.UNKNOWN, CommandType.from("blah")));
