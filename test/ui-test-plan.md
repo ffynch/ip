@@ -1,5 +1,56 @@
 # UI Test Plan
 
+## Test case: Find tasks regardless of letter case
+
+**Aim:** Verify that find supports partial keywords without requiring matching letter case.
+
+### Input
+
+```text
+todo Read Book
+deadline BOOK flight /by 2026-10-20
+todo submit report
+find bOo
+bye
+```
+
+### Expected output
+
+```text
+____________________________________________________________
+ ____  _____ _____ __  __  ___  
+| __ )| ____| ____|  \/  |/ _ \ 
+|  _ \|  _| |  _| | |\/| | | | |
+| |_) | |___| |___| |  | | |_| |
+|____/|_____|_____|_|  |_|\___/ 
+Hello! I'm Beemo.
+What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [T][ ] Read Book
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [D][ ] BOOK flight (by: Oct 20 2026)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [T][ ] submit report
+Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Here are the matching tasks in your list:
+1.[T][ ] Read Book
+2.[D][ ] BOOK flight (by: Oct 20 2026)
+____________________________________________________________
+____________________________________________________________
+Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
+____________________________________________________________
+```
+
 ## Test case: Display command guidance
 
 **Aim:** Verify that help lists every supported command without changing task data.

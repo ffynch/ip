@@ -76,13 +76,13 @@ class TaskListTest {
     }
 
     @Test
-    void find_keywordInDescriptions_matchingTasksReturnedInOrder() {
-        Todo firstMatch = new Todo("read book");
+    void find_partialKeywordWithDifferentCase_matchingTasksReturnedInOrder() {
+        Todo firstMatch = new Todo("Read Book");
         Deadline nonMatch = new Deadline("submit report", LocalDate.of(2026, 8, 30));
-        Todo secondMatch = new Todo("return book");
+        Todo secondMatch = new Todo("return BOOK");
         TaskList tasks = new TaskList(List.of(firstMatch, nonMatch, secondMatch));
 
-        List<Task> matches = tasks.find("book");
+        List<Task> matches = tasks.find("BoO");
 
         assertEquals(List.of(firstMatch, secondMatch), matches);
         assertTrue(tasks.find("2026").isEmpty());
