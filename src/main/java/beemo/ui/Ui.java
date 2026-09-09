@@ -83,6 +83,23 @@ public class Ui {
     }
 
     /**
+     * Displays guidance for all supported commands.
+     */
+    public void showHelp() {
+        output.accept("Here are the commands I understand:");
+        output.accept("  todo DESCRIPTION");
+        output.accept("  deadline DESCRIPTION /by yyyy-MM-dd");
+        output.accept("  event DESCRIPTION /from START /to END");
+        output.accept("  list");
+        output.accept("  find KEYWORD");
+        output.accept("  mark TASK_NUMBER");
+        output.accept("  unmark TASK_NUMBER");
+        output.accept("  delete TASK_NUMBER");
+        output.accept("  help");
+        output.accept("  bye");
+    }
+
+    /**
      * Displays all tasks in their current order.
      *
      * @param tasks Tasks to display.

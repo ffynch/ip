@@ -9,6 +9,7 @@ import beemo.command.Command;
 import beemo.command.DeleteCommand;
 import beemo.command.ExitCommand;
 import beemo.command.FindCommand;
+import beemo.command.HelpCommand;
 import beemo.command.ListCommand;
 import beemo.command.MarkCommand;
 import beemo.command.UnmarkCommand;
@@ -46,6 +47,8 @@ public class Parser {
         switch (commandType) {
             case BYE:
                 return new ExitCommand();
+            case HELP:
+                return new HelpCommand();
             case LIST:
                 return new ListCommand();
             case MARK:

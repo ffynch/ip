@@ -1,5 +1,46 @@
 # UI Test Plan
 
+## Test case: Display command guidance
+
+**Aim:** Verify that help lists every supported command without changing task data.
+
+### Input
+
+```text
+help
+bye
+```
+
+### Expected output
+
+```text
+____________________________________________________________
+ ____  _____ _____ __  __  ___  
+| __ )| ____| ____|  \/  |/ _ \ 
+|  _ \|  _| |  _| | |\/| | | | |
+| |_) | |___| |___| |  | | |_| |
+|____/|_____|_____|_|  |_|\___/ 
+Hello! I'm Beemo.
+What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Here are the commands I understand:
+  todo DESCRIPTION
+  deadline DESCRIPTION /by yyyy-MM-dd
+  event DESCRIPTION /from START /to END
+  list
+  find KEYWORD
+  mark TASK_NUMBER
+  unmark TASK_NUMBER
+  delete TASK_NUMBER
+  help
+  bye
+____________________________________________________________
+____________________________________________________________
+Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
+____________________________________________________________
+```
+
 ## JavaFX GUI smoke test
 
 Run `./gradlew run` and verify the following manually:
