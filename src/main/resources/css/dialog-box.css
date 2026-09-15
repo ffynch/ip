@@ -1,14 +1,29 @@
 .label {
-    -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
-    -fx-border-color: #009e73;
+    -fx-font: 15px "Arial";
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
 }
 
+.user-label {
+    -fx-background-color: #d9f2ff;
+    -fx-border-color: #2784c7;
+    -fx-text-fill: #17324d;
+}
+
 .reply-label {
+    -fx-background-color: #fff4cc;
+    -fx-border-color: #e1a624;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+    -fx-text-fill: #3d2c00;
+}
+
+.error-label {
+    -fx-background-color: #ffe1e1;
+    -fx-border-color: #cf3f4f;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7a1421;
 }
 
 #displayPicture {

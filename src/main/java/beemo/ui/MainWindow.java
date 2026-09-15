@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
  * Controls Beemo's main chat window.
  */
 public class MainWindow extends AnchorPane {
+    private static final String ERROR_PREFIX = "OOPS...";
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -56,9 +58,12 @@ public class MainWindow extends AnchorPane {
         }
 
         String response = beemo.getResponse(input);
+        DialogBox responseDialog = response.startsWith(ERROR_PREFIX)
+                ? DialogBox.getErrorDialog(response, beemoImage)
+                : DialogBox.getBeemoDialog(response, beemoImage);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getBeemoDialog(response, beemoImage));
+                responseDialog);
         userInput.clear();
     }
 }
