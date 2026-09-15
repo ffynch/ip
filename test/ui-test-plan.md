@@ -23,21 +23,21 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] Read Book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [D][ ] BOOK flight (by: Oct 20 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] submit report
 Now you have 3 tasks in the list.
 ____________________________________________________________
@@ -71,8 +71,8 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
 Here are the commands I understand:
@@ -133,26 +133,26 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] read book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [E][ ] book club (from: Monday to: Tuesday)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] submit report
 Now you have 4 tasks in the list.
 ____________________________________________________________
@@ -194,11 +194,11 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] borrow book
 Now you have 1 tasks in the list.
 ____________________________________________________________
@@ -245,39 +245,39 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] read book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [E][ ] meeting (from: Monday to: Tuesday)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Nice! I've marked this task as done:
+Yay good job! I've marked this task as done:
   [T][X] read book
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 0 is not in your list. ╥‸╥
+OOPS... Task 0 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... 'two' is not a valid task number. ╥‸╥
+OOPS... 'two' is not a valid task number. ╥‸╥ Please enter a number shown in your task list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 4 is not in your list. ╥‸╥
+OOPS... Task 4 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-Noted. I've removed this task:
+All right, I've removed this task:
   [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
@@ -287,11 +287,11 @@ Here are the tasks in your list:
 2.[E][ ] meeting (from: Monday to: Tuesday)
 ____________________________________________________________
 ____________________________________________________________
-Nice! I've marked this task as done:
+Yay good job! I've marked this task as done:
   [E][X] meeting (from: Monday to: Tuesday)
 ____________________________________________________________
 ____________________________________________________________
-Noted. I've removed this task:
+All right, I've removed this task:
   [T][X] read book
 Now you have 1 tasks in the list.
 ____________________________________________________________
@@ -300,15 +300,15 @@ Here are the tasks in your list:
 1.[E][X] meeting (from: Monday to: Tuesday)
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 2 is not in your list. ╥‸╥
+OOPS... Task 2 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-Noted. I've removed this task:
+All right, I've removed this task:
   [E][X] meeting (from: Monday to: Tuesday)
 Now you have 0 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 1 is not in your list. ╥‸╥
+OOPS... Task 1 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
 Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
@@ -344,41 +344,41 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] read book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... The description of a todo cannot be empty. ╥‸╥
+OOPS... The description of a todo cannot be empty. ╥‸╥ Add a description after 'todo'.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... A deadline needs a '/by' date or time. ╥‸╥
+OOPS... A deadline needs a '/by' date or time. ╥‸╥ Use: deadline DESCRIPTION /by yyyy-MM-dd.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Deadline dates must use the yyyy-MM-dd format. ╥‸╥
+OOPS... Deadline dates must use the yyyy-MM-dd format. ╥‸╥ For example, use 2026-09-30.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... An event needs both '/from' and '/to' times. ╥‸╥
+OOPS... An event needs both '/from' and '/to' times. ╥‸╥ Use: event DESCRIPTION /from START /to END.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [E][ ] meeting (from: Monday to: Tuesday)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... I don't know what that means ╥‸╥
+OOPS... I don't know what that means ╥‸╥ Try 'help' to see the available commands.
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
@@ -421,45 +421,45 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] read book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [D][ ] return book (by: Aug 30 2026)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Nice! I've marked this task as done:
+Yay good job! I've marked this task as done:
   [T][X] read book
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 0 is not in your list. ╥‸╥
+OOPS... Task 0 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... 'two' is not a valid task number. ╥‸╥
+OOPS... 'two' is not a valid task number. ╥‸╥ Please enter a number shown in your task list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 3 is not in your list. ╥‸╥
+OOPS... Task 3 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+No problem! I've marked this task as not done yet:
   [D][ ] return book (by: Aug 30 2026)
 ____________________________________________________________
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+No problem! I've marked this task as not done yet:
   [T][ ] read book
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task -1 is not in your list. ╥‸╥
+OOPS... Task -1 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-Nice! I've marked this task as done:
+Yay good job! I've marked this task as done:
   [D][X] return book (by: Aug 30 2026)
 ____________________________________________________________
 ____________________________________________________________
@@ -500,37 +500,37 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-OOPS... The description of a todo cannot be empty. ╥‸╥
+OOPS... The description of a todo cannot be empty. ╥‸╥ Add a description after 'todo'.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... I don't know what that means ╥‸╥
+OOPS... I don't know what that means ╥‸╥ Try 'help' to see the available commands.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... A deadline needs a '/by' date or time. ╥‸╥
+OOPS... A deadline needs a '/by' date or time. ╥‸╥ Use: deadline DESCRIPTION /by yyyy-MM-dd.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... An event needs both '/from' and '/to' times. ╥‸╥
+OOPS... An event needs both '/from' and '/to' times. ╥‸╥ Use: event DESCRIPTION /from START /to END.
 ____________________________________________________________
 ____________________________________________________________
 OOPS... Please provide a task number after 'mark'.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... 'two' is not a valid task number. ╥‸╥
+OOPS... 'two' is not a valid task number. ╥‸╥ Please enter a number shown in your task list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 1 is not in your list. ╥‸╥
+OOPS... Task 1 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [T][ ] borrow book
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-OOPS... Task 2 is not in your list. ╥‸╥
+OOPS... Task 2 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
 Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
@@ -561,25 +561,25 @@ ____________________________________________________________
 |  _ \|  _| |  _| | |\/| | | | |
 | |_) | |___| |___| |  | | |_| |
 |____/|_____|_____|_|  |_|\___/ 
-Hello! I'm Beemo.
-What can I do for you?
+Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
+What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [D][ ] do homework (by: Dec 1 2026)
 Now you have 1 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Got it. I've added this task:
+Got it! I've added this task for you:
   [E][ ] project meeting (from: Mon 2pm to: 4pm)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-Nice! I've marked this task as done:
+Yay good job! I've marked this task as done:
   [E][X] project meeting (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
-OK, I've marked this task as not done yet:
+No problem! I've marked this task as not done yet:
   [E][ ] project meeting (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________

@@ -50,7 +50,9 @@ public class Storage {
             }
             return tasks;
         } catch (IOException e) {
-            throw new BeemoException("OOPS... I couldn't load your saved tasks. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... I couldn't load your saved tasks. ╥‸╥ "
+                            + "Check that the data file is readable and try again.");
         }
     }
 
@@ -73,7 +75,9 @@ public class Storage {
             }
             Files.write(filePath, lines, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new BeemoException("OOPS... I couldn't save your tasks. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... I couldn't save your tasks. ╥‸╥ "
+                            + "Check that the data folder is writable and try again.");
         }
     }
 
@@ -99,7 +103,9 @@ public class Storage {
             return String.join(SEPARATOR, "E", status, task.getDescription(),
                     event.getStartTime(), event.getEndTime());
         }
-        throw new BeemoException("OOPS... I couldn't save this task. ╥‸╥");
+        throw new BeemoException(
+                "OOPS... I couldn't save this task. ╥‸╥ "
+                        + "Use a supported todo, deadline, or event task.");
     }
 
     /**
@@ -123,7 +129,9 @@ public class Storage {
                 task = new Event(fields[2], fields[3], fields[4]);
                 break;
             default:
-                throw new BeemoException("OOPS... I couldn't load your saved tasks. ╥‸╥");
+                throw new BeemoException(
+                        "OOPS... I couldn't load your saved tasks. ╥‸╥ "
+                                + "Check the data file for an unsupported task type.");
         }
 
         if (fields[1].equals("1")) {

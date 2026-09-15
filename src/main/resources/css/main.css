@@ -1,19 +1,22 @@
 .root {
-    -fx-background-color: #edfff2;
+    -fx-background-color: #fbf2ff;
 }
 
 .text-field {
-    -fx-background-color: #d9ffe2;
+    -fx-background-color: #fff0f6;
+    -fx-border-color: #dba4bd;
+    -fx-border-radius: 0.5em;
     -fx-font: 16px "Arial";
 }
 
 .button {
-    -fx-background-color: mediumspringgreen;
+    -fx-background-color: #8f63c4;
     -fx-font: bold 15px "Arial";
+    -fx-text-fill: white;
 }
 
 .button:hover {
-    -fx-background-color: cyan;
+    -fx-background-color: #d65c8a;
 }
 
 .scroll-pane,
@@ -22,6 +25,6 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #ff9cb4;
+    -fx-background-color: #b88ad9;
     -fx-background-radius: 1em;
 }

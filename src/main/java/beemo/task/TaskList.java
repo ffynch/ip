@@ -122,7 +122,7 @@ public class TaskList {
     private int toIndex(int taskNumber) throws BeemoException {
         if (taskNumber < 1 || taskNumber > tasks.size()) {
             throw new BeemoException(
-                    "OOPS... Task " + taskNumber + " is not in your list. ╥‸╥");
+                    "OOPS... Task " + taskNumber + " is not in your list. ╥‸╥ Please try another number.");
         }
         return taskNumber - 1;
     }
