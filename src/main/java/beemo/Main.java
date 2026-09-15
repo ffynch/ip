@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private static final String WINDOW_TITLE = "Beemo";
     private static final String MAIN_WINDOW_RESOURCE = "/view/MainWindow.fxml";
-    private static final String APPLICATION_ICON_RESOURCE = "/images/DaDuke.png";
+    private static final String APPLICATION_ICON_RESOURCE = "/images/Beemo.png";
     private static final double MINIMUM_WINDOW_HEIGHT = 360.0;
     private static final double MINIMUM_WINDOW_WIDTH = 420.0;
 

@@ -25,7 +25,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private final Image userImage = new Image(getClass().getResourceAsStream("/images/DaUser.png"));
-    private final Image beemoImage = new Image(getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image beemoImage = new Image(getClass().getResourceAsStream("/images/Beemo.png"));
     private Beemo beemo;
 
     /**
