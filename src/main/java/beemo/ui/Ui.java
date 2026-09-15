@@ -105,6 +105,10 @@ public class Ui {
      * @param tasks Tasks to display.
      */
     public void showTaskList(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            output.accept("Your task list is empty. Add a task whenever you're ready!");
+            return;
+        }
         output.accept("Here are the tasks in your list:");
         showTasks(tasks);
     }

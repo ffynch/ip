@@ -1,5 +1,6 @@
 package beemo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,5 +29,15 @@ class BeemoTest {
         CommandResult result = beemo.getCommandResult("list");
 
         assertFalse(result.isExit());
+    }
+
+    @Test
+    void getCommandResult_listWithNoTasks_emptyListMessage() {
+        Beemo beemo = new Beemo(tempDirectory.resolve("data/tasks.txt"));
+
+        CommandResult result = beemo.getCommandResult("list");
+
+        assertEquals("Your task list is empty. Add a task whenever you're ready!",
+                result.response());
     }
 }
