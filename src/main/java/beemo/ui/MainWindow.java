@@ -44,7 +44,7 @@ public class MainWindow extends AnchorPane {
     public void setBeemo(Beemo beemo) {
         this.beemo = beemo;
         dialogContainer.getChildren().add(DialogBox.getBeemoDialog(
-                "Hello! I'm Beemo. What can I do for you?", beemoImage));
+                "Hello! I'm Beemo (˶˃⤙˂˶)! What can I do for you?", beemoImage));
     }
 
     /**

@@ -6,17 +6,17 @@
 }
 
 .user-label {
-    -fx-background-color: #d9f2ff;
-    -fx-border-color: #2784c7;
-    -fx-text-fill: #17324d;
+    -fx-background-color: #ffd9e8;
+    -fx-border-color: #d65c8a;
+    -fx-text-fill: #5c1732;
 }
 
 .reply-label {
-    -fx-background-color: #fff4cc;
-    -fx-border-color: #e1a624;
+    -fx-background-color: #eadcff;
+    -fx-border-color: #8559bd;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
-    -fx-text-fill: #3d2c00;
+    -fx-text-fill: #382052;
 }
 
 .error-label {

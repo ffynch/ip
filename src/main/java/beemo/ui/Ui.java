@@ -45,8 +45,8 @@ public class Ui {
     public void showWelcome() {
         showLine();
         output.accept(BANNER);
-        output.accept("Hello! I'm Beemo.");
-        output.accept("What can I do for you?");
+        output.accept("Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)");
+        output.accept("What can I do for you? ᵔ ᵕ ᵔ");
         showLine();
     }
 
@@ -136,7 +136,7 @@ public class Ui {
      * @param task Task that was marked.
      */
     public void showMarkedTask(Task task) {
-        output.accept("Nice! I've marked this task as done:");
+        output.accept("Yay good job! I've marked this task as done:");
         output.accept("  " + task);
     }
 
@@ -146,7 +146,7 @@ public class Ui {
      * @param task Task that was unmarked.
      */
     public void showUnmarkedTask(Task task) {
-        output.accept("OK, I've marked this task as not done yet:");
+        output.accept("No problem! I've marked this task as not done yet:");
         output.accept("  " + task);
     }
 
@@ -157,7 +157,7 @@ public class Ui {
      * @param taskCount Number of tasks remaining.
      */
     public void showDeletedTask(Task task, int taskCount) {
-        output.accept("Noted. I've removed this task:");
+        output.accept("All right, I've removed this task:");
         output.accept("  " + task);
         showTaskCount(taskCount);
     }
@@ -169,7 +169,7 @@ public class Ui {
      * @param taskCount Number of tasks after the addition.
      */
     public void showAddedTask(Task task, int taskCount) {
-        output.accept("Got it. I've added this task:");
+        output.accept("Got it! I've added this task for you:");
         output.accept("  " + task);
         showTaskCount(taskCount);
     }

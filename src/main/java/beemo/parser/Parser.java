@@ -68,7 +68,9 @@ public class Parser {
             case UNKNOWN:
                 // Fallthrough
             default:
-                throw new BeemoException("OOPS... I don't know what that means ╥‸╥");
+                throw new BeemoException(
+                        "OOPS... I don't know what that means ╥‸╥ "
+                                + "Try 'help' to see the available commands.");
         }
     }
 
@@ -108,7 +110,9 @@ public class Parser {
         try {
             taskNumber = Integer.parseInt(numberText);
         } catch (NumberFormatException e) {
-            throw new BeemoException("OOPS... '" + numberText + "' is not a valid task number. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... '" + numberText + "' is not a valid task number. ╥‸╥ "
+                            + "Please enter a number shown in your task list.");
         }
         return taskNumber;
     }
@@ -143,7 +147,9 @@ public class Parser {
     private static Task parseTodo(String command) throws BeemoException {
         String description = command.substring(TODO_KEYWORD.length()).trim();
         if (description.isEmpty()) {
-            throw new BeemoException("OOPS... The description of a todo cannot be empty. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... The description of a todo cannot be empty. ╥‸╥ "
+                            + "Add a description after 'todo'.");
         }
         return new Todo(description);
     }
@@ -159,21 +165,28 @@ public class Parser {
         String details = command.substring(DEADLINE_KEYWORD.length()).trim();
         int byIndex = details.indexOf(BY_DELIMITER);
         if (byIndex < 0) {
-            throw new BeemoException("OOPS... A deadline needs a '/by' date or time. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... A deadline needs a '/by' date or time. ╥‸╥ "
+                            + "Use: deadline DESCRIPTION /by yyyy-MM-dd.");
         }
         String description = details.substring(0, byIndex).trim();
         String byText = details.substring(byIndex + BY_DELIMITER.length()).trim();
         if (description.isEmpty()) {
-            throw new BeemoException("OOPS... The description of a deadline cannot be empty. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... The description of a deadline cannot be empty. ╥‸╥ "
+                            + "Add a description before '/by'.");
         }
         if (byText.isEmpty()) {
-            throw new BeemoException("OOPS... The '/by' date or time cannot be empty. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... The '/by' date or time cannot be empty. ╥‸╥ "
+                            + "Add a date after '/by' using yyyy-MM-dd.");
         }
         try {
             return new Deadline(description, LocalDate.parse(byText));
         } catch (DateTimeParseException e) {
             throw new BeemoException(
-                    "OOPS... Deadline dates must use the yyyy-MM-dd format. ╥‸╥");
+                    "OOPS... Deadline dates must use the yyyy-MM-dd format. ╥‸╥ "
+                            + "For example, use 2026-09-30.");
         }
     }
 
@@ -191,16 +204,22 @@ public class Parser {
                 ? -1
                 : details.indexOf(TO_DELIMITER, fromIndex + FROM_DELIMITER.length());
         if (fromIndex < 0 || toIndex < 0) {
-            throw new BeemoException("OOPS... An event needs both '/from' and '/to' times. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... An event needs both '/from' and '/to' times. ╥‸╥ "
+                            + "Use: event DESCRIPTION /from START /to END.");
         }
         String description = details.substring(0, fromIndex).trim();
         String from = details.substring(fromIndex + FROM_DELIMITER.length(), toIndex).trim();
         String to = details.substring(toIndex + TO_DELIMITER.length()).trim();
         if (description.isEmpty()) {
-            throw new BeemoException("OOPS... The description of an event cannot be empty. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... The description of an event cannot be empty. ╥‸╥ "
+                            + "Add a description before '/from'.");
         }
         if (from.isEmpty() || to.isEmpty()) {
-            throw new BeemoException("OOPS... Event start and end times cannot be empty. ╥‸╥");
+            throw new BeemoException(
+                    "OOPS... Event start and end times cannot be empty. ╥‸╥ "
+                            + "Add values after both '/from' and '/to'.");
         }
         return new Event(description, from, to);
     }
