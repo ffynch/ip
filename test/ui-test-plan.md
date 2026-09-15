@@ -175,14 +175,14 @@ ____________________________________________________________
 
 ## Test case: Add and list a todo
 
-**Aim:** Verify that a todo is stored with the correct type and incomplete status.
+**Aim:** Verify that irregular command spacing is accepted and a todo is stored correctly.
 
 ### Input
 
 ```text
-todo borrow book
-list
-bye
+  todo   borrow book
+  list
+  bye
 ```
 
 ### Expected output
