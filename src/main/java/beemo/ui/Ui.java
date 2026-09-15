@@ -184,6 +184,7 @@ public class Ui {
     }
 
     private void showTaskCount(int taskCount) {
-        output.accept("Now you have " + taskCount + " tasks in the list.");
+        String taskNoun = taskCount == 1 ? "task" : "tasks";
+        output.accept("Now you have " + taskCount + " " + taskNoun + " in the list.");
     }
 }
