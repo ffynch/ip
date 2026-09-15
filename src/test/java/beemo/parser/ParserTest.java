@@ -51,6 +51,15 @@ class ParserTest {
     }
 
     @Test
+    void parse_commandWithIrregularWhitespace_commandParsed() throws BeemoException {
+        Task task = executeAddCommand("  deadline   return book   /by   2026-08-30  ");
+
+        Deadline deadline = assertInstanceOf(Deadline.class, task);
+        assertEquals("return book", deadline.getDescription());
+        assertEquals(LocalDate.of(2026, 8, 30), deadline.getDueDate());
+    }
+
+    @Test
     void parse_todoCommand_addsTodoWithDescription() throws BeemoException {
         Task task = executeAddCommand("todo read book");
 
@@ -80,6 +89,7 @@ class ParserTest {
     @Test
     void parse_invalidCommands_exceptionThrown() {
         assertAll(
+                () -> assertThrows(BeemoException.class, () -> Parser.parse("   ")),
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("blah")),
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("mark")),
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("mark two")),

@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ import beemo.task.Todo;
  */
 public class Storage {
     private static final String SEPARATOR = " | ";
+    private static final String INVALID_DATA_MESSAGE =
+            "OOPS... I couldn't load your saved tasks. ╥‸╥ "
+                    + "Check the data file for invalid task details.";
 
     private final Path filePath;
 
@@ -116,27 +120,50 @@ public class Storage {
      * @throws BeemoException If the record contains an unsupported task type.
      */
     private Task parseTask(String line) throws BeemoException {
-        String[] fields = line.split(" \\| ");
+        String[] fields = line.split(" \\| ", -1);
+        if (fields.length < 3 || (!fields[1].equals("0") && !fields[1].equals("1"))
+                || fields[2].isBlank()) {
+            throw invalidDataException();
+        }
+
         Task task;
         switch (fields[0]) {
             case "T":
+                requireFieldCount(fields, 3);
                 task = new Todo(fields[2]);
                 break;
             case "D":
-                task = new Deadline(fields[2], LocalDate.parse(fields[3]));
+                requireFieldCount(fields, 4);
+                try {
+                    task = new Deadline(fields[2], LocalDate.parse(fields[3]));
+                } catch (DateTimeParseException e) {
+                    throw invalidDataException();
+                }
                 break;
             case "E":
+                requireFieldCount(fields, 5);
+                if (fields[3].isBlank() || fields[4].isBlank()) {
+                    throw invalidDataException();
+                }
                 task = new Event(fields[2], fields[3], fields[4]);
                 break;
             default:
-                throw new BeemoException(
-                        "OOPS... I couldn't load your saved tasks. ╥‸╥ "
-                                + "Check the data file for an unsupported task type.");
+                throw invalidDataException();
         }
 
         if (fields[1].equals("1")) {
             task.markAsDone();
         }
         return task;
+    }
+
+    private static void requireFieldCount(String[] fields, int expectedCount) throws BeemoException {
+        if (fields.length != expectedCount) {
+            throw invalidDataException();
+        }
+    }
+
+    private static BeemoException invalidDataException() {
+        return new BeemoException(INVALID_DATA_MESSAGE);
     }
 }

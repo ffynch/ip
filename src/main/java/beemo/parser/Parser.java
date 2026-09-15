@@ -43,7 +43,14 @@ public class Parser {
      * @throws BeemoException If the command is unrecognized or malformed.
      */
     public static Command parse(String command) throws BeemoException {
-        CommandType commandType = CommandType.from(command);
+        if (command == null || command.isBlank()) {
+            throw new BeemoException(
+                    "OOPS... I don't know what that means ╥‸╥ "
+                            + "Try 'help' to see the available commands.");
+        }
+
+        String normalizedCommand = command.strip().replaceAll("\\s+", " ");
+        CommandType commandType = CommandType.from(normalizedCommand);
         switch (commandType) {
             case BYE:
                 return new ExitCommand();
@@ -52,19 +59,19 @@ public class Parser {
             case LIST:
                 return new ListCommand();
             case MARK:
-                return new MarkCommand(parseTaskNumber(command, commandType.getKeyword()));
+                return new MarkCommand(parseTaskNumber(normalizedCommand, commandType.getKeyword()));
             case UNMARK:
-                return new UnmarkCommand(parseTaskNumber(command, commandType.getKeyword()));
+                return new UnmarkCommand(parseTaskNumber(normalizedCommand, commandType.getKeyword()));
             case DELETE:
-                return new DeleteCommand(parseTaskNumber(command, commandType.getKeyword()));
+                return new DeleteCommand(parseTaskNumber(normalizedCommand, commandType.getKeyword()));
             case FIND:
-                return new FindCommand(parseKeyword(command, commandType.getKeyword()));
+                return new FindCommand(parseKeyword(normalizedCommand, commandType.getKeyword()));
             case TODO:
                 // Fallthrough
             case DEADLINE:
                 // Fallthrough
             case EVENT:
-                return new AddCommand(parseTask(command));
+                return new AddCommand(parseTask(normalizedCommand));
             case UNKNOWN:
                 // Fallthrough
             default:

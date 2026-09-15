@@ -1,5 +1,6 @@
 package beemo.storage;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -76,11 +77,28 @@ class StorageTest {
     }
 
     @Test
+    void loadTasks_malformedRecords_exceptionThrown() {
+        assertAll(
+                () -> assertMalformedRecordRejected("T | 0"),
+                () -> assertMalformedRecordRejected("T | maybe | read book"),
+                () -> assertMalformedRecordRejected("D | 0 | return book | Sunday"),
+                () -> assertMalformedRecordRejected("E | 0 | meeting | Monday | "));
+    }
+
+    @Test
     void saveTasks_unknownTaskSubclass_exceptionThrown() {
         Storage storage = new Storage(tempDirectory.resolve("tasks.txt"));
         Task unsupportedTask = new Task("unsupported");
 
         assertThrows(BeemoException.class,
                 () -> storage.saveTasks(List.of(unsupportedTask)));
+    }
+
+    private void assertMalformedRecordRejected(String record) throws IOException {
+        Path filePath = tempDirectory.resolve(Integer.toHexString(record.hashCode()) + ".txt");
+        Files.writeString(filePath, record);
+        Storage storage = new Storage(filePath);
+
+        assertThrows(BeemoException.class, storage::loadTasks);
     }
 }
