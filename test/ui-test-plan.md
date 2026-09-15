@@ -329,6 +329,7 @@ deadline return book
 deadline return book /by Sunday
 deadline return book /by 2026-08-30
 event meeting /from Monday
+event meeting /from 4pm /to 3pm
 event meeting /from Monday /to Tuesday
 blah
 list
@@ -371,6 +372,9 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 OOPS... An event needs both '/from' and '/to' times. ╥‸╥ Use: event DESCRIPTION /from START /to END.
+____________________________________________________________
+____________________________________________________________
+OOPS... An event must end after it starts. ╥‸╥ Enter an '/to' time later than the '/from' time.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:

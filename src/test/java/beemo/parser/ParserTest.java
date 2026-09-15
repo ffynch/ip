@@ -87,6 +87,24 @@ class ParserTest {
     }
 
     @Test
+    void parse_eventEndingBeforeStart_exceptionThrown() {
+        BeemoException exception = assertThrows(BeemoException.class,
+                () -> Parser.parse("event meeting /from 4pm /to 3pm"));
+
+        assertEquals("OOPS... An event must end after it starts. ╥‸╥ "
+                + "Enter an '/to' time later than the '/from' time.", exception.getMessage());
+    }
+
+    @Test
+    void parse_eventWithValidClockTimes_addsEvent() throws BeemoException {
+        Task task = executeAddCommand("event meeting /from 2pm /to 4pm");
+
+        Event event = assertInstanceOf(Event.class, task);
+        assertEquals("2pm", event.getStartTime());
+        assertEquals("4pm", event.getEndTime());
+    }
+
+    @Test
     void parse_invalidCommands_exceptionThrown() {
         assertAll(
                 () -> assertThrows(BeemoException.class, () -> Parser.parse("   ")),

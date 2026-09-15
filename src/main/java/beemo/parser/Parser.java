@@ -1,7 +1,13 @@
 package beemo.parser;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 import beemo.BeemoException;
 import beemo.command.AddCommand;
@@ -28,6 +34,12 @@ public class Parser {
     private static final String BY_DELIMITER = "/by ";
     private static final String FROM_DELIMITER = "/from ";
     private static final String TO_DELIMITER = "/to ";
+    private static final List<DateTimeFormatter> EVENT_TIME_FORMATTERS = List.of(
+            createTimeFormatter("h:mma"),
+            createTimeFormatter("ha"),
+            createTimeFormatter("h:mm a"),
+            createTimeFormatter("h a"),
+            DateTimeFormatter.ofPattern("H:mm"));
 
     /**
      * Prevents construction of this utility class.
@@ -228,6 +240,60 @@ public class Parser {
                     "OOPS... Event start and end times cannot be empty. ╥‸╥ "
                             + "Add values after both '/from' and '/to'.");
         }
+        validateEventTimeOrder(from, to);
         return new Event(description, from, to);
+    }
+
+    /**
+     * Rejects a clock-time range whose end is not later than its start.
+     *
+     * <p>Free-form event text remains supported. The comparison is performed only
+     * when both values use a recognized clock-time format.</p>
+     *
+     * @param startText Event start supplied by the user.
+     * @param endText Event end supplied by the user.
+     * @throws BeemoException If both values are clock times and the range is invalid.
+     */
+    private static void validateEventTimeOrder(String startText, String endText)
+            throws BeemoException {
+        Optional<LocalTime> startTime = parseEventTime(startText);
+        Optional<LocalTime> endTime = parseEventTime(endText);
+        if (startTime.isPresent()
+                && endTime.isPresent()
+                && !endTime.get().isAfter(startTime.get())) {
+            throw new BeemoException(
+                    "OOPS... An event must end after it starts. ╥‸╥ "
+                            + "Enter an '/to' time later than the '/from' time.");
+        }
+    }
+
+    /**
+     * Parses a clock time while retaining support for free-form event text.
+     *
+     * @param timeText Possible clock time.
+     * @return Parsed time, or an empty result when the text is not a recognized clock time.
+     */
+    private static Optional<LocalTime> parseEventTime(String timeText) {
+        for (DateTimeFormatter formatter : EVENT_TIME_FORMATTERS) {
+            try {
+                return Optional.of(LocalTime.parse(timeText, formatter));
+            } catch (DateTimeParseException e) {
+                // Try the next supported clock-time format.
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Creates a case-insensitive formatter for a clock-time pattern.
+     *
+     * @param pattern Date-time pattern to use.
+     * @return Case-insensitive formatter using the English locale.
+     */
+    private static DateTimeFormatter createTimeFormatter(String pattern) {
+        return new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .appendPattern(pattern)
+                .toFormatter(Locale.ENGLISH);
     }
 }

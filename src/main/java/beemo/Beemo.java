@@ -41,6 +41,16 @@ public class Beemo {
      * @return Beemo's response to the command.
      */
     public String getResponse(String input) {
+        return getCommandResult(input).response();
+    }
+
+    /**
+     * Executes one command and returns its response and exit status.
+     *
+     * @param input Command entered by the user.
+     * @return Result containing the response and whether Beemo should exit.
+     */
+    public CommandResult getCommandResult(String input) {
         StringBuilder response = new StringBuilder();
         Ui responseUi = new Ui(line -> {
             if (!response.isEmpty()) {
@@ -49,8 +59,8 @@ public class Beemo {
             response.append(line);
         });
 
-        executeCommand(input, responseUi);
-        return response.toString();
+        boolean isExit = executeCommand(input, responseUi);
+        return new CommandResult(response.toString(), isExit);
     }
 
     /**
