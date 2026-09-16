@@ -278,10 +278,11 @@ public class Parser {
     }
 
     /**
-     * Rejects a clock-time range whose end is not later than its start.
+     * Rejects a clock-time range whose end is the same as its start.
      *
      * <p>Free-form event text remains supported. The comparison is performed only
-     * when both values use a recognized clock-time format.</p>
+     * when both values use a recognized clock-time format. An earlier end time is
+     * treated as occurring on the following day.</p>
      *
      * @param startText Event start supplied by the user.
      * @param endText Event end supplied by the user.
@@ -293,7 +294,7 @@ public class Parser {
         Optional<LocalTime> endTime = parseEventTime(endText);
         if (startTime.isPresent()
                 && endTime.isPresent()
-                && !endTime.get().isAfter(startTime.get())) {
+                && endTime.get().equals(startTime.get())) {
             throw new BeemoException(
                     "OOPS... An event must end after it starts. ╥‸╥ "
                             + "Enter an '/to' time later than the '/from' time.");

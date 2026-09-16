@@ -329,7 +329,7 @@ deadline return book
 deadline return book /by Sunday
 deadline return book /by 2026-08-30
 event meeting /from Monday
-event meeting /from 4pm /to 3pm
+event meeting /from 4pm /to 4pm
 event test /from 2026-03-03 /to 2025-03-03
 event conf /from 1pm /to 2pm /from 3pm
 event meeting /from Monday /to Tuesday
@@ -551,15 +551,16 @@ ____________________________________________________________
 
 ## Test case: Format deadline date and preserve event text
 
-**Aim:** Verify deadline dates are reformatted while event details remain unchanged.
+**Aim:** Verify deadline dates are reformatted while regular and overnight event times remain unchanged.
 
 ### Input
 
 ```text
 deadline do homework /by 2026-12-01
+event night shift /from 11pm /to 1am
 event project meeting /from Mon 2pm /to 4pm
-mark 2
-unmark 2
+mark 3
+unmark 3
 list
 bye
 ```
@@ -583,8 +584,13 @@ Now you have 1 task in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:
-  [E][ ] project meeting (from: Mon 2pm to: 4pm)
+  [E][ ] night shift (from: 11pm to: 1am)
 Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it! I've added this task for you:
+  [E][ ] project meeting (from: Mon 2pm to: 4pm)
+Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Yay good job! I've marked this task as done:
@@ -597,7 +603,8 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[D][ ] do homework (by: Dec 1 2026)
-2.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+2.[E][ ] night shift (from: 11pm to: 1am)
+3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
