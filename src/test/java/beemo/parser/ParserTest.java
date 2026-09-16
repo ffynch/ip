@@ -106,6 +106,20 @@ class ParserTest {
     }
 
     @Test
+    void parse_eventWithDuplicateTimeDelimiter_exceptionThrown() {
+        BeemoException duplicateFromException = assertThrows(BeemoException.class,
+                () -> Parser.parse("event conf /from 1pm /to 2pm /from 3pm"));
+        BeemoException duplicateToException = assertThrows(BeemoException.class,
+                () -> Parser.parse("event conf /from 1pm /to 2pm /to 3pm"));
+
+        String expectedMessage = "OOPS... An event must contain exactly one '/from' and one '/to'. ╥‸╥ "
+                + "Remove the duplicate time delimiter.";
+        assertAll(
+                () -> assertEquals(expectedMessage, duplicateFromException.getMessage()),
+                () -> assertEquals(expectedMessage, duplicateToException.getMessage()));
+    }
+
+    @Test
     void parse_eventWithValidClockTimes_addsEvent() throws BeemoException {
         Task task = executeAddCommand("event meeting /from 2pm /to 4pm");
 

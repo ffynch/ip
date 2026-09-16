@@ -227,6 +227,15 @@ public class Parser {
                     "OOPS... An event needs both '/from' and '/to' times. ╥‸╥ "
                             + "Use: event DESCRIPTION /from START /to END.");
         }
+        boolean hasDuplicateFrom = details.indexOf(
+                FROM_DELIMITER, fromIndex + FROM_DELIMITER.length()) >= 0;
+        boolean hasDuplicateTo = details.indexOf(
+                TO_DELIMITER, toIndex + TO_DELIMITER.length()) >= 0;
+        if (hasDuplicateFrom || hasDuplicateTo) {
+            throw new BeemoException(
+                    "OOPS... An event must contain exactly one '/from' and one '/to'. ╥‸╥ "
+                            + "Remove the duplicate time delimiter.");
+        }
         String description = details.substring(0, fromIndex).trim();
         String from = details.substring(fromIndex + FROM_DELIMITER.length(), toIndex).trim();
         String to = details.substring(toIndex + TO_DELIMITER.length()).trim();
