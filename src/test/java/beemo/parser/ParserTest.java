@@ -96,6 +96,16 @@ class ParserTest {
     }
 
     @Test
+    void parse_eventEndDateBeforeStartDate_exceptionThrown() {
+        BeemoException exception = assertThrows(BeemoException.class,
+                () -> Parser.parse("event test /from 2026-03-03 /to 2025-03-03"));
+
+        assertEquals("OOPS... An event cannot end before it starts. ╥‸╥ "
+                + "Enter an '/to' date later than or equal to the '/from' date.",
+                exception.getMessage());
+    }
+
+    @Test
     void parse_eventWithValidClockTimes_addsEvent() throws BeemoException {
         Task task = executeAddCommand("event meeting /from 2pm /to 4pm");
 

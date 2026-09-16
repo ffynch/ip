@@ -330,6 +330,7 @@ deadline return book /by Sunday
 deadline return book /by 2026-08-30
 event meeting /from Monday
 event meeting /from 4pm /to 3pm
+event test /from 2026-03-03 /to 2025-03-03
 event meeting /from Monday /to Tuesday
 blah
 list
@@ -349,7 +350,7 @@ Hello! I'm Beemo! (˶ᵔ ᵕ ᵔ˶)
 What can I do for you? ᵔ ᵕ ᵔ
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks in your list:
+Your task list is empty. Add a task whenever you're ready!
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:
@@ -375,6 +376,9 @@ OOPS... An event needs both '/from' and '/to' times. ╥‸╥ Use: event DESCRI
 ____________________________________________________________
 ____________________________________________________________
 OOPS... An event must end after it starts. ╥‸╥ Enter an '/to' time later than the '/from' time.
+____________________________________________________________
+____________________________________________________________
+OOPS... An event cannot end before it starts. ╥‸╥ Enter an '/to' date later than or equal to the '/from' date.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:

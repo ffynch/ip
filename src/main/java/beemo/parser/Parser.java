@@ -240,8 +240,32 @@ public class Parser {
                     "OOPS... Event start and end times cannot be empty. ╥‸╥ "
                             + "Add values after both '/from' and '/to'.");
         }
-        validateEventTimeOrder(from, to);
+        validateEventOrder(from, to);
         return new Event(description, from, to);
+    }
+
+    /**
+     * Rejects a date or clock-time range whose end is before its start.
+     *
+     * @param startText Event start supplied by the user.
+     * @param endText Event end supplied by the user.
+     * @throws BeemoException If both values are comparable and the range is invalid.
+     */
+    private static void validateEventOrder(String startText, String endText)
+            throws BeemoException {
+        try {
+            LocalDate startDate = LocalDate.parse(startText);
+            LocalDate endDate = LocalDate.parse(endText);
+            if (endDate.isBefore(startDate)) {
+                throw new BeemoException(
+                        "OOPS... An event cannot end before it starts. ╥‸╥ "
+                                + "Enter an '/to' date later than or equal to the '/from' date.");
+            }
+            return;
+        } catch (DateTimeParseException e) {
+            // Values that are not ISO dates may still be comparable clock times.
+        }
+        validateEventTimeOrder(startText, endText);
     }
 
     /**
