@@ -68,6 +68,23 @@ class StorageTest {
     }
 
     @Test
+    void saveAndLoadTasks_separatorInFields_dataPreserved() throws BeemoException {
+        Path filePath = tempDirectory.resolve("tasks.txt");
+        Storage storage = new Storage(filePath);
+        Todo todo = new Todo("buy milk | eggs \\ bread");
+        Event event = new Event("A | B", "room \\ one", "room | two");
+
+        storage.saveTasks(List.of(todo, event));
+        List<Task> loadedTasks = storage.loadTasks();
+
+        assertEquals("buy milk | eggs \\ bread", loadedTasks.get(0).getDescription());
+        Event loadedEvent = assertInstanceOf(Event.class, loadedTasks.get(1));
+        assertEquals("A | B", loadedEvent.getDescription());
+        assertEquals("room \\ one", loadedEvent.getStartTime());
+        assertEquals("room | two", loadedEvent.getEndTime());
+    }
+
+    @Test
     void loadTasks_unknownTaskType_exceptionThrown() throws IOException {
         Path filePath = tempDirectory.resolve("tasks.txt");
         Files.writeString(filePath, "X | 0 | mystery task");

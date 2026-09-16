@@ -95,17 +95,17 @@ public class Storage {
     private String formatTask(Task task) throws BeemoException {
         String status = task.isDone() ? "1" : "0";
         if (task instanceof Todo) {
-            return String.join(SEPARATOR, "T", status, task.getDescription());
+            return String.join(SEPARATOR, "T", status, encodeField(task.getDescription()));
         }
         if (task instanceof Deadline) {
             Deadline deadline = (Deadline) task;
-            return String.join(SEPARATOR, "D", status, task.getDescription(),
+            return String.join(SEPARATOR, "D", status, encodeField(task.getDescription()),
                     deadline.getDueDate().toString());
         }
         if (task instanceof Event) {
             Event event = (Event) task;
-            return String.join(SEPARATOR, "E", status, task.getDescription(),
-                    event.getStartTime(), event.getEndTime());
+            return String.join(SEPARATOR, "E", status, encodeField(task.getDescription()),
+                    encodeField(event.getStartTime()), encodeField(event.getEndTime()));
         }
         throw new BeemoException(
                 "OOPS... I couldn't save this task. ╥‸╥ "
@@ -120,7 +120,7 @@ public class Storage {
      * @throws BeemoException If the record contains an unsupported task type.
      */
     private Task parseTask(String line) throws BeemoException {
-        String[] fields = line.split(" \\| ", -1);
+        String[] fields = decodeFields(line);
         if (fields.length < 3 || (!fields[1].equals("0") && !fields[1].equals("1"))
                 || fields[2].isBlank()) {
             throw invalidDataException();
@@ -161,6 +161,46 @@ public class Storage {
         if (fields.length != expectedCount) {
             throw invalidDataException();
         }
+    }
+
+    /**
+     * Escapes characters that have special meaning in a storage field.
+     *
+     * @param field Field text to encode.
+     * @return Encoded field text.
+     */
+    private static String encodeField(String field) {
+        return field.replace("\\", "\\\\").replace("|", "\\|");
+    }
+
+    /**
+     * Splits a storage record while decoding escaped field content.
+     *
+     * @param line Storage record to decode.
+     * @return Decoded fields from the record.
+     */
+    private static String[] decodeFields(String line) {
+        ArrayList<String> fields = new ArrayList<>();
+        StringBuilder field = new StringBuilder();
+        boolean isEscaped = false;
+        for (int index = 0; index < line.length(); index++) {
+            char character = line.charAt(index);
+            if (isEscaped) {
+                field.append(character);
+                isEscaped = false;
+            } else if (character == '\\' && index + 1 < line.length()
+                    && (line.charAt(index + 1) == '\\' || line.charAt(index + 1) == '|')) {
+                isEscaped = true;
+            } else if (line.startsWith(SEPARATOR, index)) {
+                fields.add(field.toString());
+                field.setLength(0);
+                index += SEPARATOR.length() - 1;
+            } else {
+                field.append(character);
+            }
+        }
+        fields.add(field.toString());
+        return fields.toArray(String[]::new);
     }
 
     private static BeemoException invalidDataException() {
