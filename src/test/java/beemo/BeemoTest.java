@@ -40,4 +40,19 @@ class BeemoTest {
         assertEquals("Your task list is empty. Add a task whenever you're ready!",
                 result.response());
     }
+
+    @Test
+    void reload_tasksContainingSeparator_tasksPreserved() {
+        Path filePath = tempDirectory.resolve("data/tasks.txt");
+        Beemo firstSession = new Beemo(filePath);
+        firstSession.getResponse("todo keep me");
+        firstSession.getResponse("todo buy milk | eggs");
+
+        Beemo secondSession = new Beemo(filePath);
+
+        assertEquals("Here are the tasks in your list:" + System.lineSeparator()
+                        + "1.[T][ ] keep me" + System.lineSeparator()
+                        + "2.[T][ ] buy milk | eggs",
+                secondSession.getResponse("list"));
+    }
 }
