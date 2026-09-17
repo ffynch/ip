@@ -172,6 +172,10 @@ class ParserTest {
                         () -> Parser.parse("event hello /from hello /to hello"))
                         .getMessage()),
                 () -> assertEquals(expectedMessage, assertThrows(BeemoException.class,
+                        () -> Parser.parse(
+                                "event test3 /from 2026 09 30 /to 2026 10 01"))
+                        .getMessage()),
+                () -> assertEquals(expectedMessage, assertThrows(BeemoException.class,
                         () -> Parser.parse("event meeting /from 2026-09-16 /to 4pm"))
                         .getMessage()));
     }

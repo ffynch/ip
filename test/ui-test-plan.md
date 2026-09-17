@@ -334,6 +334,7 @@ event test /from 2026-03-03 /to 2025-03-03
 event midterm /from 2026-09-16 9pm /to 2026-09-16 1pm
 event CS2100 Quiz /from 2026-02-29 90pm /to 100pm
 event hello /from hello /to hello
+event test3 /from 2026 09 30 /to 2026 10 01
 event conf /from 1pm /to 2pm /from 3pm
 event meeting /from 2pm /to 4pm
 blah
@@ -386,6 +387,9 @@ OOPS... An event cannot end before it starts. ╥‸╥ Enter an '/to' date late
 ____________________________________________________________
 ____________________________________________________________
 OOPS... An event must end after it starts. ╥‸╥ Enter an '/to' date and time later than '/from'.
+____________________________________________________________
+____________________________________________________________
+OOPS... Event dates and times are invalid. ╥‸╥ Use yyyy-MM-dd, a clock time such as 2pm, or yyyy-MM-dd 2pm.
 ____________________________________________________________
 ____________________________________________________________
 OOPS... Event dates and times are invalid. ╥‸╥ Use yyyy-MM-dd, a clock time such as 2pm, or yyyy-MM-dd 2pm.
