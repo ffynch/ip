@@ -331,6 +331,7 @@ deadline return book /by 2026-08-30
 event meeting /from Monday
 event meeting /from 4pm /to 4pm
 event test /from 2026-03-03 /to 2025-03-03
+event midterm /from 2026-09-16 9pm /to 2026-09-16 1pm
 event conf /from 1pm /to 2pm /from 3pm
 event meeting /from Monday /to Tuesday
 blah
@@ -380,6 +381,9 @@ OOPS... An event must end after it starts. ╥‸╥ Enter an '/to' time later t
 ____________________________________________________________
 ____________________________________________________________
 OOPS... An event cannot end before it starts. ╥‸╥ Enter an '/to' date later than or equal to the '/from' date.
+____________________________________________________________
+____________________________________________________________
+OOPS... An event must end after it starts. ╥‸╥ Enter an '/to' date and time later than '/from'.
 ____________________________________________________________
 ____________________________________________________________
 OOPS... An event must contain exactly one '/from' and one '/to'. ╥‸╥ Remove the duplicate time delimiter.

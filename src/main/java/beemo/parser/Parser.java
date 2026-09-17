@@ -1,6 +1,7 @@
 package beemo.parser;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -272,9 +273,40 @@ public class Parser {
             }
             return;
         } catch (DateTimeParseException e) {
-            // Values that are not ISO dates may still be comparable clock times.
+            // Values that are not ISO dates may still be comparable date-times or clock times.
+        }
+
+        Optional<LocalDateTime> startDateTime = parseEventDateTime(startText);
+        Optional<LocalDateTime> endDateTime = parseEventDateTime(endText);
+        if (startDateTime.isPresent()
+                && endDateTime.isPresent()
+                && !endDateTime.get().isAfter(startDateTime.get())) {
+            throw new BeemoException(
+                    "OOPS... An event must end after it starts. ╥‸╥ "
+                            + "Enter an '/to' date and time later than '/from'.");
         }
         validateEventTimeOrder(startText, endText);
+    }
+
+    /**
+     * Parses an ISO date followed by a supported clock time.
+     *
+     * @param dateTimeText Possible event date and time.
+     * @return Parsed date-time, or an empty result when the text is not recognized.
+     */
+    private static Optional<LocalDateTime> parseEventDateTime(String dateTimeText) {
+        int separatorIndex = dateTimeText.indexOf(' ');
+        if (separatorIndex < 0) {
+            return Optional.empty();
+        }
+
+        try {
+            LocalDate date = LocalDate.parse(dateTimeText.substring(0, separatorIndex));
+            String timeText = dateTimeText.substring(separatorIndex + 1);
+            return parseEventTime(timeText).map(date::atTime);
+        } catch (DateTimeParseException e) {
+            return Optional.empty();
+        }
     }
 
     /**

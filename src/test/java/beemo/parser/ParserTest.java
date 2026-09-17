@@ -106,6 +106,27 @@ class ParserTest {
     }
 
     @Test
+    void parse_eventEndDateTimeBeforeStartDateTime_exceptionThrown() {
+        BeemoException exception = assertThrows(BeemoException.class,
+                () -> Parser.parse(
+                        "event midterm /from 2026-09-16 9pm /to 2026-09-16 1pm"));
+
+        assertEquals("OOPS... An event must end after it starts. ╥‸╥ "
+                + "Enter an '/to' date and time later than '/from'.",
+                exception.getMessage());
+    }
+
+    @Test
+    void parse_eventWithValidDateTimes_addsEvent() throws BeemoException {
+        Task task = executeAddCommand(
+                "event midterm /from 2026-09-16 1pm /to 2026-09-16 9pm");
+
+        Event event = assertInstanceOf(Event.class, task);
+        assertEquals("2026-09-16 1pm", event.getStartTime());
+        assertEquals("2026-09-16 9pm", event.getEndTime());
+    }
+
+    @Test
     void parse_eventWithDuplicateTimeDelimiter_exceptionThrown() {
         BeemoException duplicateFromException = assertThrows(BeemoException.class,
                 () -> Parser.parse("event conf /from 1pm /to 2pm /from 3pm"));
