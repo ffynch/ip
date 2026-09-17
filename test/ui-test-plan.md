@@ -116,7 +116,7 @@ The test runner compiles the Java files in `src/main/java`, starts a fresh `Beem
 ```text
 todo read book
 deadline return book /by 2026-08-30
-event book club /from Monday /to Tuesday
+event book club /from 2pm /to 4pm
 todo submit report
 find book
 find missing
@@ -148,7 +148,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:
-  [E][ ] book club (from: Monday to: Tuesday)
+  [E][ ] book club (from: 2pm to: 4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -160,7 +160,7 @@ ____________________________________________________________
 Here are the matching tasks in your list:
 1.[T][ ] read book
 2.[D][ ] return book (by: Aug 30 2026)
-3.[E][ ] book club (from: Monday to: Tuesday)
+3.[E][ ] book club (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
@@ -220,7 +220,7 @@ ____________________________________________________________
 ```text
 todo read book
 deadline return book /by 2026-08-30
-event meeting /from Monday /to Tuesday
+event meeting /from 2pm /to 4pm
 mark 1
 delete 0
 delete two
@@ -260,7 +260,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:
-  [E][ ] meeting (from: Monday to: Tuesday)
+  [E][ ] meeting (from: 2pm to: 4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -284,11 +284,11 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[E][ ] meeting (from: Monday to: Tuesday)
+2.[E][ ] meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Yay good job! I've marked this task as done:
-  [E][X] meeting (from: Monday to: Tuesday)
+  [E][X] meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 All right, I've removed this task:
@@ -297,14 +297,14 @@ Now you have 1 task in the list.
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
-1.[E][X] meeting (from: Monday to: Tuesday)
+1.[E][X] meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 OOPS... Task 2 is not in your list. ╥‸╥ Please try another number.
 ____________________________________________________________
 ____________________________________________________________
 All right, I've removed this task:
-  [E][X] meeting (from: Monday to: Tuesday)
+  [E][X] meeting (from: 2pm to: 4pm)
 Now you have 0 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -332,8 +332,10 @@ event meeting /from Monday
 event meeting /from 4pm /to 4pm
 event test /from 2026-03-03 /to 2025-03-03
 event midterm /from 2026-09-16 9pm /to 2026-09-16 1pm
+event CS2100 Quiz /from 2026-02-29 90pm /to 100pm
+event hello /from hello /to hello
 event conf /from 1pm /to 2pm /from 3pm
-event meeting /from Monday /to Tuesday
+event meeting /from 2pm /to 4pm
 blah
 list
 bye
@@ -386,11 +388,17 @@ ____________________________________________________________
 OOPS... An event must end after it starts. ╥‸╥ Enter an '/to' date and time later than '/from'.
 ____________________________________________________________
 ____________________________________________________________
+OOPS... Event dates and times are invalid. ╥‸╥ Use yyyy-MM-dd, a clock time such as 2pm, or yyyy-MM-dd 2pm.
+____________________________________________________________
+____________________________________________________________
+OOPS... Event dates and times are invalid. ╥‸╥ Use yyyy-MM-dd, a clock time such as 2pm, or yyyy-MM-dd 2pm.
+____________________________________________________________
+____________________________________________________________
 OOPS... An event must contain exactly one '/from' and one '/to'. ╥‸╥ Remove the duplicate time delimiter.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:
-  [E][ ] meeting (from: Monday to: Tuesday)
+  [E][ ] meeting (from: 2pm to: 4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -400,7 +408,7 @@ ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] read book
 2.[D][ ] return book (by: Aug 30 2026)
-3.[E][ ] meeting (from: Monday to: Tuesday)
+3.[E][ ] meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა
@@ -562,7 +570,7 @@ ____________________________________________________________
 ```text
 deadline do homework /by 2026-12-01
 event night shift /from 11pm /to 1am
-event project meeting /from Mon 2pm /to 4pm
+event project meeting /from 2pm /to 4pm
 mark 3
 unmark 3
 list
@@ -593,22 +601,22 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it! I've added this task for you:
-  [E][ ] project meeting (from: Mon 2pm to: 4pm)
+  [E][ ] project meeting (from: 2pm to: 4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Yay good job! I've marked this task as done:
-  [E][X] project meeting (from: Mon 2pm to: 4pm)
+  [E][X] project meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 No problem! I've marked this task as not done yet:
-  [E][ ] project meeting (from: Mon 2pm to: 4pm)
+  [E][ ] project meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[D][ ] do homework (by: Dec 1 2026)
 2.[E][ ] night shift (from: 11pm to: 1am)
-3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+3.[E][ ] project meeting (from: 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Beemo signing off! See you next time! ૮ ˶ᵔ ᵕ ᵔ˶ ა

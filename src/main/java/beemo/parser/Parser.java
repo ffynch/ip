@@ -255,11 +255,11 @@ public class Parser {
     }
 
     /**
-     * Rejects a date or clock-time range whose end is before its start.
+     * Validates the format and order of an event's start and end values.
      *
      * @param startText Event start supplied by the user.
      * @param endText Event end supplied by the user.
-     * @throws BeemoException If both values are comparable and the range is invalid.
+     * @throws BeemoException If the values use an invalid or mismatched format, or the range is invalid.
      */
     private static void validateEventOrder(String startText, String endText)
             throws BeemoException {
@@ -278,14 +278,29 @@ public class Parser {
 
         Optional<LocalDateTime> startDateTime = parseEventDateTime(startText);
         Optional<LocalDateTime> endDateTime = parseEventDateTime(endText);
-        if (startDateTime.isPresent()
-                && endDateTime.isPresent()
-                && !endDateTime.get().isAfter(startDateTime.get())) {
-            throw new BeemoException(
-                    "OOPS... An event must end after it starts. ╥‸╥ "
-                            + "Enter an '/to' date and time later than '/from'.");
+        if (startDateTime.isPresent() && endDateTime.isPresent()) {
+            if (!endDateTime.get().isAfter(startDateTime.get())) {
+                throw new BeemoException(
+                        "OOPS... An event must end after it starts. ╥‸╥ "
+                                + "Enter an '/to' date and time later than '/from'.");
+            }
+            return;
         }
-        validateEventTimeOrder(startText, endText);
+
+        Optional<LocalTime> startTime = parseEventTime(startText);
+        Optional<LocalTime> endTime = parseEventTime(endText);
+        if (startTime.isPresent() && endTime.isPresent()) {
+            if (endTime.get().equals(startTime.get())) {
+                throw new BeemoException(
+                        "OOPS... An event must end after it starts. ╥‸╥ "
+                                + "Enter an '/to' time later than the '/from' time.");
+            }
+            return;
+        }
+
+        throw new BeemoException(
+                "OOPS... Event dates and times are invalid. ╥‸╥ "
+                        + "Use yyyy-MM-dd, a clock time such as 2pm, or yyyy-MM-dd 2pm.");
     }
 
     /**
@@ -310,31 +325,7 @@ public class Parser {
     }
 
     /**
-     * Rejects a clock-time range whose end is the same as its start.
-     *
-     * <p>Free-form event text remains supported. The comparison is performed only
-     * when both values use a recognized clock-time format. An earlier end time is
-     * treated as occurring on the following day.</p>
-     *
-     * @param startText Event start supplied by the user.
-     * @param endText Event end supplied by the user.
-     * @throws BeemoException If both values are clock times and the range is invalid.
-     */
-    private static void validateEventTimeOrder(String startText, String endText)
-            throws BeemoException {
-        Optional<LocalTime> startTime = parseEventTime(startText);
-        Optional<LocalTime> endTime = parseEventTime(endText);
-        if (startTime.isPresent()
-                && endTime.isPresent()
-                && endTime.get().equals(startTime.get())) {
-            throw new BeemoException(
-                    "OOPS... An event must end after it starts. ╥‸╥ "
-                            + "Enter an '/to' time later than the '/from' time.");
-        }
-    }
-
-    /**
-     * Parses a clock time while retaining support for free-form event text.
+     * Parses a supported clock time.
      *
      * @param timeText Possible clock time.
      * @return Parsed time, or an empty result when the text is not a recognized clock time.

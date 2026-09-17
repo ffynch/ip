@@ -81,8 +81,10 @@ deadline Submit project /by 2026-09-18
 
 ### Adding an event: `event`
 
-Adds a task that takes place between a start and an end time. The start and
-end values can be written as meaningful text.
+Adds a task that takes place between a start and an end time. Both values must
+use the same supported format: an ISO date (`yyyy-MM-dd`), a clock time such as
+`3pm` or `15:00`, or an ISO date followed by a clock time such as
+`2026-09-16 3pm`. An earlier clock-only end time is treated as the next day.
 
 Format: `event DESCRIPTION /from START /to END`
 

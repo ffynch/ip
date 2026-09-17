@@ -78,12 +78,12 @@ class ParserTest {
 
     @Test
     void parse_eventCommand_addsEventWithTimes() throws BeemoException {
-        Task task = executeAddCommand("event meeting /from Monday /to Tuesday");
+        Task task = executeAddCommand("event meeting /from 2026-09-16 /to 2026-09-17");
 
         Event event = assertInstanceOf(Event.class, task);
         assertEquals("meeting", event.getDescription());
-        assertEquals("Monday", event.getStartTime());
-        assertEquals("Tuesday", event.getEndTime());
+        assertEquals("2026-09-16", event.getStartTime());
+        assertEquals("2026-09-17", event.getEndTime());
     }
 
     @Test
@@ -156,6 +156,24 @@ class ParserTest {
         Event event = assertInstanceOf(Event.class, task);
         assertEquals("11pm", event.getStartTime());
         assertEquals("1am", event.getEndTime());
+    }
+
+    @Test
+    void parse_eventWithInvalidDateOrTime_exceptionThrown() {
+        String expectedMessage = "OOPS... Event dates and times are invalid. ╥‸╥ "
+                + "Use yyyy-MM-dd, a clock time such as 2pm, or yyyy-MM-dd 2pm.";
+
+        assertAll(
+                () -> assertEquals(expectedMessage, assertThrows(BeemoException.class,
+                        () -> Parser.parse(
+                                "event CS2100 Quiz /from 2026-02-29 90pm /to 100pm"))
+                        .getMessage()),
+                () -> assertEquals(expectedMessage, assertThrows(BeemoException.class,
+                        () -> Parser.parse("event hello /from hello /to hello"))
+                        .getMessage()),
+                () -> assertEquals(expectedMessage, assertThrows(BeemoException.class,
+                        () -> Parser.parse("event meeting /from 2026-09-16 /to 4pm"))
+                        .getMessage()));
     }
 
     @Test
